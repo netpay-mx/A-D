@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afiliación E-Commerce — Acuática y Danza</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── A&D Brand Palette ── */
+    --navy:       #0A1628;
+    --navy-mid:   #0D2040;
+    --navy-light: #132952;
+    --ocean:      #0077B6;
+    --aqua:       #00C9D4;
+    --aqua-dark:  #0097A7;
+    --aqua-lt:    #E0FAFB;
+    --gold:       #F5C518;
+    --gold-dark:  #D4A800;
+    --white:      #FFFFFF;
+    --gray-50:    #F8FAFC;
+    --gray-100:   #F1F5F9;
+    --gray-200:   #E2E8F0;
+    --gray-300:   #CBD5E1;
+    --gray-400:   #94A3B8;
+    --gray-600:   #475569;
+    --gray-700:   #334155;
+    --gray-800:   #1E293B;
+    --red:        #EF4444;
+    --green:      #10B981;
+    --radius:     10px;
+    --radius-lg:  16px;
+    --shadow:     0 4px 24px rgba(10,22,40,0.14);
+    --shadow-lg:  0 8px 40px rgba(10,22,40,0.22);
+    --transition: 0.2s ease;
+    --wave-color: rgba(0,201,212,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--navy);
+    min-height: 100vh;
+    color: var(--gray-800);
+    padding-bottom: 80px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ── Animated wave background ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(0,201,212,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,119,182,0.15) 0%, transparent 55%),
+      linear-gradient(175deg, #0A1628 0%, #0D2040 50%, #091830 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body > * { position: relative; z-index: 1; }
+
+  /* ── FOOTER BAR ── */
+  .footerbar {
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(20px);
+    border-top: 2px solid rgba(0,201,212,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 36px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 -4px 32px rgba(0,201,212,0.10);
+  }
+  .footerbar-actions { display: flex; gap: 10px; align-items: center; }
+  .footerbar-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 18px;
+    border-radius: 7px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .btn-draft  { background: rgba(0,201,212,0.12); color: var(--aqua); border: 1px solid rgba(0,201,212,0.25); }
+  .btn-print  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.12); }
+  .btn-clear  { background: rgba(239,68,68,0.15);  color: #FCA5A5; border: 1px solid rgba(239,68,68,0.25); }
+  .btn-draft:hover  { background: rgba(0,201,212,0.22); }
+  .btn-print:hover  { background: rgba(255,255,255,0.15); }
+  .btn-clear:hover  { background: rgba(239,68,68,0.25); }
+
+  .footerbar-right { display: flex; align-items: center; gap: 16px; }
+
+  /* CorePay logo placeholder */
+  .logo-corepay {
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(0,201,212,0.08);
+    border: 1px solid rgba(0,201,212,0.25);
+    border-radius: 7px;
+    padding: 6px 14px;
+    color: rgba(0,201,212,0.80);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .logo-corepay .logo-box {
+    width: 22px; height: 22px;
+    background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-dark) 100%);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; color: var(--navy);
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--navy);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 26px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(245,197,24,0.40);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-submit::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s ease;
+  }
+  .btn-submit:hover::after { left: 150%; }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(245,197,24,0.55);
+  }
+  .btn-submit:disabled {
+    opacity: 0.55; cursor: not-allowed; transform: none;
+  }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 52px 24px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+  }
+
+  /* Live water canvas behind hero */
+  #waterCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  /* Hero content sits above canvas */
+  .hero > *:not(#waterCanvas) { position: relative; z-index: 2; }
+
+  /* Wave divider below hero */
+  .hero-wave {
+    width: 100%;
+    margin-top: 24px;
+    line-height: 0;
+    overflow: hidden;
+  }
+  .hero-wave svg {
+    display: block;
+    width: 100%;
+    height: 80px;
+  }
+
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--aqua);
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.0;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 32px rgba(0,201,212,0.35), 0 1px 0 rgba(0,0,0,0.5);
+  }
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 700;
+  }
+  .hero h1 span.brand-aqua {
+    color: var(--aqua);
+    text-shadow: 0 0 40px rgba(0,201,212,0.6), 0 4px 32px rgba(0,201,212,0.3);
+  }
+  .hero p {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 4px;
+  }
+
+  /* ── LOGO PLACEHOLDERS with real hover ── */
+  .logos-row {
+    display: flex; align-items: center; gap: 28px;
+    margin-bottom: 32px;
+  }
+  .logo-placeholder {
+    width: 140px; height: 72px;
+    border: 2px dashed rgba(0,201,212,0.5);
+    border-radius: 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px;
+    color: rgba(255,255,255,0.55);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0,201,212,0.06);
+    box-shadow: 0 0 0 0 rgba(0,201,212,0);
+  }
+  .logo-placeholder:hover {
+    border-color: var(--aqua);
+    background: rgba(0,201,212,0.15);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(0,201,212,0.3), 0 0 0 3px rgba(0,201,212,0.2);
+    color: rgba(255,255,255,0.9);
+  }
+  .logo-placeholder input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%;
+  }
+  .logo-placeholder .icon { font-size: 22px; transition: transform 0.3s ease; }
+  .logo-placeholder:hover .icon { transform: scale(1.25); }
+  .logo-placeholder img {
+    max-width: 100%; max-height: 60px;
+    object-fit: contain; border-radius: 8px;
+  }
+  .logo-divider {
+    width: 1px; height: 56px;
+    background: linear-gradient(to bottom, transparent, rgba(0,201,212,0.4), transparent);
+  }
+  .logo-netpay {
+    width: 120px; height: 56px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(0,201,212,0.25);
+    transition: all 0.3s ease;
+  }
+  .logo-netpay:hover {
+    background: rgba(0,201,212,0.10);
+    border-color: var(--aqua);
+    color: rgba(255,255,255,0.85);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,201,212,0.2);
+  }
+
+  /* ── FORM CARD ── */
+  .form-wrap {
+    max-width: 840px;
+    margin: 0 auto 60px;
+    padding: 20px 20px 0;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0,201,212,0.08);
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0 12px 48px rgba(10,22,40,0.25), 0 0 0 1px rgba(0,201,212,0.12);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid rgba(0,201,212,0.15);
+  }
+  .card-header .section-num {
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+    color: var(--navy);
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(245,197,24,0.35);
+  }
+  .card-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .card-header .section-icon { font-size: 18px; opacity: 0.7; }
+
+  .card-body { padding: 24px 28px 28px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .field label .req { color: var(--aqua); margin-left: 2px; }
+  .field label .note {
+    font-size: 10px;
+    color: var(--gray-400);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    display: block;
+    margin-top: 1px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="date"],
+  input[type="number"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    color: var(--gray-800);
+    background: var(--gray-50);
+    transition: var(--transition);
+    outline: none;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--aqua);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(0,201,212,0.15);
+  }
+  input::placeholder, textarea::placeholder {
+    color: var(--gray-400);
+    font-size: 13px;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+  textarea { resize: vertical; min-height: 72px; }
+
+  /* ── RADIO / CHECK GROUPS ── */
+  .radio-group, .check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+  }
+  .radio-pill, .check-pill {
+    display: flex; align-items: center; gap: 6px;
+    padding: 7px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    transition: var(--transition);
+    background: var(--gray-50);
+    user-select: none;
+  }
+  .radio-pill:hover, .check-pill:hover {
+    border-color: var(--aqua);
+    background: var(--aqua-lt);
+    color: var(--aqua);
+  }
+  .radio-pill input, .check-pill input { display: none; }
+  .radio-pill.selected, .check-pill.selected {
+    border-color: var(--aqua);
+    background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-dark) 100%);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(0,201,212,0.35);
+  }
+  .radio-pill.selected .pill-dot { background: #fff; }
+  .pill-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gray-400);
+    transition: var(--transition);
+  }
+
+  /* ── BOOLEAN ROW ── */
+  .bool-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    background: var(--gray-50);
+    gap: 12px;
+  }
+  .bool-row .bool-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-700);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .bool-row .bool-label small {
+    display: block;
+    font-size: 11px;
+    color: var(--gray-400);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .toggle-btns { display: flex; gap: 6px; flex-shrink: 0; }
+  .toggle-btn {
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 1.5px solid var(--gray-200);
+    background: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--gray-500);
+  }
+  .toggle-btn.active-yes {
+    background: var(--green); border-color: var(--green); color: #fff;
+  }
+  .toggle-btn.active-no {
+    background: var(--red); border-color: var(--red); color: #fff;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+  .checklist-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--white);
+    user-select: none;
+  }
+  .checklist-item:hover { border-color: var(--aqua); background: var(--aqua-lt); }
+  .checklist-item.checked { border-color: var(--aqua); background: #E0FAFB; }
+
+  /* Real visible checkbox — always shown */
+  .checklist-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray-300);
+    border-radius: 5px;
+    flex-shrink: 0;
+    background: #fff;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checklist-item input[type="checkbox"]:checked {
+    background: var(--aqua);
+    border-color: var(--aqua);
+  }
+  .checklist-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 2px;
+    width: 6px; height: 10px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  .checklist-item:hover input[type="checkbox"] {
+    border-color: var(--aqua);
+  }
+  .checklist-item span {
+    font-size: 13.5px; font-weight: 500; color: var(--gray-700);
+    line-height: 1.4;
+  }
+  .checklist-item.checked span { color: var(--navy); font-weight: 600; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,201,212,0.20), transparent);
+    margin: 20px 0;
+  }
+
+  /* ── STATUS BANNER ── */
+  #status-banner {
+    display: none;
+    position: fixed;
+    bottom: 28px; left: 50%; transform: translateX(-50%);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 14px; font-weight: 600;
+    z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    animation: slideUp 0.3s ease;
+    white-space: nowrap;
+  }
+  #status-banner.success { background: var(--green); color: #fff; }
+  #status-banner.error   { background: var(--red);   color: #fff; }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* ── TAG BADGE ── */
+  .badge-internal {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #FFF8E1;
+    border: 1px solid #FFD54F;
+    border-radius: 5px;
+    padding: 3px 9px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #E65100;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .footerbar { padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+    .card-body { padding: 18px 16px 22px; }
+    .hero h1 { font-size: 24px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .footerbar { display: none; }
+    .hero { padding: 20px 0 16px; }
+    .card { box-shadow: none; border: 1px solid #ddd; }
+    .btn-submit { display: none; }
+  }
+
+  /* ── CURRENCY INPUT WRAP ── */
+  .currency-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .currency-symbol {
+    position: absolute;
+    left: 13px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-600);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .currency-input {
+    padding-left: 26px !important;
+  }
+
+  /* ── PILL CHECK MARK ── */
+  .pill-check {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 4px;
+    text-align: center;
+    line-height: 14px;
+    font-size: 10px;
+    color: transparent;
+    background: #fff;
+    transition: var(--transition);
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+  .check-pill.selected .pill-check {
+    background: var(--aqua);
+    border-color: var(--aqua);
+    color: #fff;
+  }
+
+
+  /* ── BRAND LOGOS FINAL — AD / NetPay / Core Pay ── */
+  .logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+  .logo-placeholder.logo-client-filled {
+    width: 140px;
+    height: 72px;
+    cursor: default;
+    border: 2px solid rgba(0,201,212,0.34);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.065);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    overflow: hidden;
+  }
+  .logo-placeholder.logo-client-filled:hover {
+    transform: none;
+    box-shadow: none;
+    background: rgba(255,255,255,0.065);
+    border-color: rgba(0,201,212,0.34);
+  }
+  .logo-placeholder.logo-client-filled img {
+    width: auto;
+    height: auto;
+    max-width: 96px;
+    max-height: 54px;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    background: transparent !important;
+  }
+  .logo-netpay {
+    width: 120px;
+    height: 56px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(0,201,212,0.25);
+    border-radius: 12px;
+    line-height: 0;
+  }
+  .logo-netpay img {
+    width: auto;
+    height: auto;
+    max-width: 105px;
+    max-height: 30px;
+    object-fit: contain;
+    display: block;
+    transform: translateY(1px);
+    background: transparent !important;
+  }
+  .logo-corepay {
+    height: 44px;
+    width: 220px;
+    min-width: 220px;
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,201,212,0.08);
+    border: 1px solid rgba(0,201,212,0.25);
+    border-radius: 7px;
+    color: rgba(0,201,212,0.86);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .logo-corepay .powered-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1;
+    flex: 0 0 auto;
+  }
+  .logo-corepay .corepay-logo-img {
+    width: 78px;
+    height: auto;
+    max-height: 22px;
+    object-fit: contain;
+    display: block;
+    flex: 0 0 auto;
+    background: transparent !important;
+  }
+  @media (max-width: 760px) {
+    .logo-corepay { width: 180px; min-width: 180px; padding: 6px 8px; gap: 7px; }
+    .logo-corepay .powered-label { font-size: 9.5px; letter-spacing: .8px; }
+    .logo-corepay .corepay-logo-img { width: 60px; max-height: 20px; }
+  }
+
+
+
+  /* ── FINAL LOGO OVERRIDES — DO NOT CHANGE ── */
+  .logo-placeholder.logo-client-filled {
+    width: 140px !important;
+    height: 72px !important;
+    padding: 9px 14px !important;
+    background: rgba(255,255,255,0.065) !important;
+    overflow: hidden !important;
+  }
+  .logo-placeholder.logo-client-filled img {
+    max-width: 108px !important;
+    max-height: 56px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+  .logo-netpay {
+    width: 120px !important;
+    height: 56px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 12px !important;
+  }
+  .logo-netpay img {
+    max-width: 104px !important;
+    max-height: 30px !important;
+    transform: translateY(1px) !important;
+  }
+  .logo-corepay {
+    width: 268px !important;
+    min-width: 268px !important;
+    height: 44px !important;
+    padding: 6px 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+  .logo-corepay .powered-label {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.6px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+  }
+  .logo-corepay .corepay-logo-img {
+    width: 104px !important;
+    max-width: 104px !important;
+    max-height: 24px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ── FOOTER BAR ── -->
+<div class="footerbar">
+  <div class="footerbar-actions">
+    <button class="footerbar-btn btn-draft" onclick="saveDraft()">
+      💾 Guardar borrador
+    </button>
+    <button class="footerbar-btn btn-print" onclick="window.print()">
+      🖨 Imprimir
+    </button>
+    <button class="footerbar-btn btn-clear" onclick="clearForm()">
+      🗑 Limpiar
+    </button>
+  </div>
+  <div class="footerbar-right">
+    <div class="logo-corepay" title="Powered by Core Pay">
+      <span class="powered-label">POWERED BY</span>
+      <img class="corepay-logo-img" src="data:image/png;base64,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" alt="Core Pay">
+    </div>
+    <button class="btn-submit" id="btnSubmit" onclick="handleSubmit()">
+      📤 Enviar diagnóstico
+    </button>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <!-- Live water canvas -->
+  <canvas id="waterCanvas"></canvas>
+
+  <div class="logos-row">
+    <div class="logo-placeholder logo-client-filled" title="Acuática y Danza">
+      <img src="data:image/png;base64,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" alt="Acuática y Danza">
+    </div>
+    <div class="logo-divider"></div>
+    <div class="logo-netpay" title="NetPay">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzMwIiBoZWlnaHQ9Ijk0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBvdmVyZmxvdz0iaGlkZGVuIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQ2IC0zODMpIj48cGF0aCBkPSJNMzcxLjc3NyAxODAuNjgxQzM3MS43NzcgMTgyLjYwMSAzNzEuMDk3IDE4NC4yMzkgMzY5LjczMiAxODUuNTk2IDM2OC4zNjcgMTg2Ljk1MyAzNjYuNjgxIDE4Ny42MTQgMzY0Ljg0MSAxODcuNjEgMzYzLjAwMSAxODcuNjA2IDM2MS4zMDQgMTg2LjkzMyAzNTkuOTUgMTg1LjU4NCAzNTguNjQ1IDE4NC4yODIgMzU3LjkxNyAxODIuNTMzIDM1Ny45MTcgMTgwLjY4OSAzNTcuOTE3IDE3OC44NDUgMzU4LjU5MyAxNzcuMTQ0IDM1OS45NDIgMTc1Ljc5MSAzNjEuMjQgMTc0LjQ5NyAzNjIuOTgxIDE3My43NjkgMzY0LjgxMyAxNzMuNzYxIDM2Ni43NCAxNzMuNzUzIDM2OC4zODIgMTc0LjQzIDM2OS43NDQgMTc1Ljc4NyAzNzEuMDk3IDE3Ny4xMzYgMzcxLjc3MyAxNzguNzcgMzcxLjc3MyAxODAuNjgxTTM3MC44NTUgMTgwLjY4MUMzNzAuODU1IDE3OS4wMTIgMzcwLjI3IDE3Ny41ODcgMzY5LjA5OSAxNzYuNDA4IDM2Ny45MjcgMTc1LjIyOSAzNjYuNDM2IDE3NC42MzkgMzY0Ljg0OSAxNzQuNjQzIDM2My4xOTUgMTc0LjY0MyAzNjEuNzg2IDE3NS4yMzMgMzYwLjYxNSAxNzYuNDA4IDM1OS40NDQgMTc3LjU4NyAzNTguODU4IDE3OS4wMTIgMzU4Ljg1OCAxODAuNjgxIDM1OC44NTggMTgyLjM1MSAzNTkuNDQ0IDE4My43OCAzNjAuNjE1IDE4NC45NTkgMzYxLjc4NiAxODYuMTM4IDM2My4yMDMgMTg2LjczMSAzNjQuODU3IDE4Ni43MzEgMzY2LjUxMSAxODYuNzMxIDM2Ny45MjcgMTg2LjE0MiAzNjkuMDk5IDE4NC45NTkgMzcwLjI3IDE4My43OCAzNzAuODU1IDE4Mi4zNTEgMzcwLjg1NSAxODAuNjgxTTM2OC44MjkgMTg0LjIwNyAzNjcuMDA5IDE4NC4yMDcgMzY0Ljc0MiAxODEuMzYyIDM2My43NTcgMTgxLjM2MiAzNjMuNzU3IDE4NC4yMDcgMzYyLjQzNSAxODQuMjA3IDM2Mi40MzUgMTc2Ljg3NSAzNjQuNjcxIDE3Ni44NzVDMzY1LjE3MyAxNzYuODc1IDM2NS41NjkgMTc2Ljg5NSAzNjUuODU4IDE3Ni45MyAzNjYuMTUxIDE3Ni45NjYgMzY2LjQ0NCAxNzcuMDczIDM2Ni43NDQgMTc3LjI0MyAzNjcuMDY1IDE3Ny40MjUgMzY3LjI5OCAxNzcuNjQzIDM2Ny40NDEgMTc3LjkgMzY3LjU4NyAxNzguMTU3IDM2Ny42NTggMTc4LjQ4NSAzNjcuNjU4IDE3OC44ODUgMzY3LjY1OCAxNzkuNDE5IDM2Ny41MTIgMTc5Ljg1OCAzNjcuMjE1IDE4MC4xOTkgMzY2LjkxOCAxODAuNTM5IDM2Ni41MzEgMTgwLjgwOCAzNjYuMDU2IDE4MC45OThMMzY4LjgyOSAxODQuMjAzWk0zNjYuMjAyIDE3OC45NzJDMzY2LjIwMiAxNzguNzc0IDM2Ni4xNyAxNzguNjA0IDM2Ni4xMDcgMTc4LjQ1OCAzNjYuMDQ0IDE3OC4zMTUgMzY1LjkyOSAxNzguMTkzIDM2NS43NzEgMTc4LjA5IDM2NS42MzYgMTc4LjAwMyAzNjUuNDkgMTc3Ljk0NyAzNjUuMzI0IDE3Ny45MTYgMzY1LjE1OCAxNzcuODg4IDM2NC45NDQgMTc3Ljg3MiAzNjQuNjgzIDE3Ny44NzJMMzYzLjc2MSAxNzcuODcyIDM2My43NjEgMTgwLjM0OSAzNjQuNTQ4IDE4MC4zNDlDMzY0LjgwNSAxODAuMzQ5IDM2NS4wNDMgMTgwLjMyNSAzNjUuMjY4IDE4MC4yNzQgMzY1LjQ5NCAxODAuMjIyIDM2NS42NzYgMTgwLjEzNSAzNjUuODE0IDE4MC4wMTMgMzY1Ljk1MyAxNzkuODkgMzY2LjA1NiAxNzkuNzQ4IDM2Ni4xMTUgMTc5LjU4OSAzNjYuMTc0IDE3OS40MjcgMzY2LjIwNiAxNzkuMjIxIDM2Ni4yMDYgMTc4Ljk3MiIgZmlsbD0iI0ZGRkZGRiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMS4wMDE3MSA0OTcuNzIzIDIyMC40OTIpIi8+PHBhdGggZD0iTTEwOS4zOTUgMjMzLjc1OUMxMDkuMzk1IDIzNi41MjggMTA3LjE1MSAyMzguNzcyIDEwNC4zODIgMjM4Ljc3Mkw5NS40ODI3IDIzOC43NzJDOTIuODkwOSAyMzguNzcyIDkxLjU0OTUgMjM3LjYyIDkwLjQ5MzEgMjM1LjEyNEw3MS44NzYxIDE5NC41MzRDNzAuNjg5IDE5MS45NzggNjguODA1NiAxODguMTE2IDY4LjA0OTggMTg1LjEwNSA2Ny45ODI2IDE4NC44MzYgNjcuNzQ5MSAxODQuNjUgNjcuNDcyMSAxODQuNjVMNjcuNDcyMSAxODQuNjVDNjcuMTEyMSAxODQuNjUgNjYuODM5IDE4NC45NjcgNjYuODgyNiAxODUuMzI3IDY3LjI4MjIgMTg4LjQ2MSA2Ny4zNjUzIDE5MS41ODcgNjcuMzY1MyAxOTQuNjMzTDY3LjM2NTMgMjM0LjgwM0M2Ny4zNjUzIDIzNi45OTUgNjUuNTg4NyAyMzguNzcyIDYzLjM5NjYgMjM4Ljc3Mkw1OS41MzQ3IDIzOC43NzJDNTcuMzQyNiAyMzguNzcyIDU1LjU2NiAyMzYuOTk1IDU1LjU2NiAyMzQuODAzTDU1LjU2NiAxNzcuNTc1QzU1LjU2NiAxNzQuODA2IDU3LjgwOTUgMTcyLjU2MiA2MC41NzkzIDE3Mi41NjJMNjkuMzgzMyAxNzIuNTYyQzcxLjk3NSAxNzIuNTYyIDczLjIyMTQgMTczLjcxMyA3NC4zNzI5IDE3Ni4yMUw5Mi40MTIxIDIxNS42NDhDOTMuNjE5IDIxOC40MyA5NS40NDcgMjIyLjI4NCA5Ni44Njc1IDIyNS43NDIgOTYuOTU4NSAyMjUuOTY4IDk3LjE3NjIgMjI2LjExIDk3LjQxNzUgMjI2LjExTDk3LjUyNDQgMjI2LjExQzk3Ljg3MjYgMjI2LjExIDk4LjE0NTYgMjI1LjgxMyA5OC4xMTc5IDIyNS40NjUgOTcuODU2OCAyMjIuMDQyIDk3LjY4NjYgMjE4LjcwMyA5Ny42ODY2IDIxNS4zNjNMOTcuNjg2NiAxNzYuNTM1Qzk3LjY4NjYgMTc0LjM0MyA5OS40NjMyIDE3Mi41NjYgMTAxLjY1NSAxNzIuNTY2TDEwNS40MjIgMTcyLjU2NkMxMDcuNjE0IDE3Mi41NjYgMTA5LjM5MSAxNzQuMzQzIDEwOS4zOTEgMTc2LjUzNUwxMDkuMzkxIDIzMy43NjNaIiBmaWxsPSIjRkZGRkZGIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxLjAwMTcxIDQ5Ny43MjMgMjIwLjQ5MikiLz48cGF0aCBkPSJNMTI5LjE0NCAyMjAuMTU1QzEzMC4xMDUgMjI4LjY5NCAxMzMuNjU0IDIzMC40MjMgMTQxLjcxNCAyMzAuNDIzIDE0NS4yNTIgMjMwLjQyMyAxNTAuMTQ2IDIzMC4xMjYgMTU0LjgyNyAyMjkuNjc1IDE1Ni45NDQgMjI5LjQ2OSAxNTguODQ0IDIzMC45NjUgMTU5LjE0IDIzMy4wN0wxNTkuMjE2IDIzMy42MDhDMTU5LjQ4OSAyMzUuNTUxIDE1OC4zMDkgMjM3LjQxMSAxNTYuNDI2IDIzNy45NjkgMTUxLjUwNCAyMzkuNDIxIDE0NS4wNzggMjM5LjkyMyAxNDAuMjc4IDIzOS45MjMgMTIzLjE5NiAyMzkuOTIzIDExNi43NyAyMzMuMDE1IDExNi43NyAyMTUuMTY1IDExNi43NyAxOTcuMzE2IDEyMy41ODQgMTkwLjQwNyAxMzkuNTE0IDE5MC40MDcgMTU1LjQ0NSAxOTAuNDA3IDE2MC45MTMgMTk2LjA3IDE2MC45MTMgMjA2LjcyMSAxNjAuOTEzIDIxNS4xNjUgMTU3LjA3NSAyMjAuMTU1IDE0OC4zNDIgMjIwLjE1NUwxMjkuMTUxIDIyMC4xNTVaTTE0NS4wNzQgMjEyQzE0OC44MTcgMjEyIDE0OS4yOTYgMjA5LjAyNCAxNDkuMjk2IDIwNi41MzIgMTQ5LjI5NiAyMDEuNTQyIDE0Ny4xODMgMTk5LjYyMyAxMzkuOTg5IDE5OS42MjMgMTMxLjkyOSAxOTkuNjIzIDEyOS4yNDIgMjAyLjExNiAxMjguOTU0IDIxMkwxNDUuMDc0IDIxMloiIGZpbGw9IiNGRkZGRkYiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIDEuMDAxNzEgNDk3LjcyMyAyMjAuNDkyKSIvPjxwYXRoIGQ9Ik0xODUuMjI4IDIyNC4wOTJDMTg1LjIyOCAyMjguMjE5IDE4Ni42NjggMjI5LjU2IDE5MC44OSAyMjkuNTZMMTkzLjk0MSAyMjkuNTZDMTk1Ljg4IDIyOS41NiAxOTcuNTI2IDIzMC45ODUgMTk3LjgwMyAyMzIuOTA0TDE5OC4wNTYgMjM0LjY0NUMxOTguMzU3IDIzNi43MzggMTk2Ljk0NCAyMzguNjk3IDE5NC44NTkgMjM5LjA0OSAxOTEuODU2IDIzOS41NTkgMTg4LjQ0OSAyMzkuODI4IDE4Ni40NzggMjM5LjgyOCAxNzguMjI4IDIzOS44MjggMTczLjcxNyAyMzQuODM5IDE3My43MTcgMjI2LjEwNkwxNzMuNzE3IDIwMC4xOTcgMTY5LjA4IDIwMC4xOTdDMTY2LjkyMyAyMDAuMTk3IDE2NS4xNzkgMTk4LjQ0OCAxNjUuMTc5IDE5Ni4yOTVMMTY1LjE3OSAxOTUuOTE5QzE2NS4xNzkgMTkzLjg1IDE2Ni43OTMgMTkyLjE0IDE2OC44NTggMTkyLjAyMkwxNzMuNjIyIDE5MS43NTMgMTczLjYyMiAxODIuMTI2QzE3My42MjIgMTc5Ljk2OSAxNzUuMzcxIDE3OC4yMjQgMTc3LjUyNCAxNzguMjI0TDE4MS4zMyAxNzguMjI0QzE4My40ODcgMTc4LjIyNCAxODUuMjMyIDE3OS45NzMgMTg1LjIzMiAxODIuMTI2TDE4NS4yMzIgMTkxLjc1MyAxOTUuMTQ4IDE5MS43NTNDMTk3LjMwNCAxOTEuNzUzIDE5OS4wNDkgMTkzLjUwMiAxOTkuMDQ5IDE5NS42NTRMMTk5LjA0OSAxOTYuMjk1QzE5OS4wNDkgMTk4LjQ1MiAxOTcuMyAyMDAuMTk3IDE5NS4xNDggMjAwLjE5N0wxODUuMjMyIDIwMC4xOTcgMTg1LjIzMiAyMjQuMDkyWiIgZmlsbD0iI0ZGRkZGRiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMS4wMDE3MSA0OTcuNzIzIDIyMC40OTIpIi8+PHBhdGggZD0iTTIwOC4yMzcgMTc2LjE4NkMyMDguMjM3IDE3NC4xMDkgMjA5LjgzNSAxNzIuMzkyIDIxMS45MDUgMTcyLjIzIDIxNy43MTQgMTcxLjc2NyAyMjIuODE0IDE3MS42OTkgMjMyLjIyNyAxNzEuNjk5IDI0OS40MDQgMTcxLjY5OSAyNTQuOTY3IDE3Ni4zMDUgMjU0Ljk2NyAxOTMuMDAzIDI1NC45NjcgMjA5LjcwMSAyNDkuNDA0IDIxNC4zMDcgMjMzLjc2MyAyMTQuMzA3IDIyOC45NjMgMjE0LjMwNyAyMjQuMjYyIDIxNC4wMTggMjIwLjIzNCAyMTMuNTM5TDIyMC4yMzQgMjM0LjgwN0MyMjAuMjM0IDIzNi45OTkgMjE4LjQ1NyAyMzguNzc2IDIxNi4yNjUgMjM4Ljc3NkwyMTIuMjEgMjM4Ljc3NkMyMTAuMDE4IDIzOC43NzYgMjA4LjI0MSAyMzYuOTk5IDIwOC4yNDEgMjM0LjgwN0wyMDguMjQxIDE3Ni4xOVpNMjMxLjk0MiAyMDQuNTE0QzI0MC4yOTEgMjA0LjQxOSAyNDIuODgzIDIwMi4xMTYgMjQyLjg4MyAxOTIuOTk5IDI0Mi44ODMgMTgzLjg4MyAyNDAuMjkxIDE4MS41OCAyMzEuOTQyIDE4MS41OEwyMjAuMjM0IDE4MS41OCAyMjAuMjM0IDIwNC41MTQgMjMxLjk0MiAyMDQuNTE0WiIgZmlsbD0iI0ZGRkZGRiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMS4wMDE3MSA0OTcuNzIzIDIyMC40OTIpIi8+PHBhdGggZD0iTTI2MS42NjIgMTk2LjU0OEMyNjEuMzYyIDE5NC4zODggMjYyLjg2MSAxOTIuMzkgMjY1LjAyMiAxOTIuMDczIDI3MS40NTUgMTkxLjEyOCAyNzkuNTA4IDE5MC40MTEgMjg0LjY0IDE5MC40MTEgMjk2LjI0OSAxOTAuNDExIDMwMi4yOTUgMTk0LjI0OSAzMDIuMjk1IDIwNi44MkwzMDIuMjk1IDIzNC44MDNDMzAyLjI5NSAyMzYuOTk1IDMwMC41MTggMjM4Ljc3MiAyOTguMzI2IDIzOC43NzJMMjk2LjQyMyAyMzguNzcyQzI5NC40OTIgMjM4Ljc3MiAyOTIuODQyIDIzNy4zODMgMjkyLjUxIDIzNS40OEwyOTEuODMzIDIzMS41NzRDMjg4LjQ3NCAyMzUuMzE4IDI4Mi4zMzMgMjM5LjgyOCAyNzMuODg5IDIzOS44MjggMjY1LjQ0NSAyMzkuODI4IDI1OS4wMTUgMjM1LjAyOSAyNTkuMDE1IDIyNi4yMDFMMjU5LjAxNSAyMjEuNDA1QzI1OS4wMTUgMjEzLjkxOSAyNjQuMSAyMDkuNjAyIDI3Mi45MzEgMjA5LjYwMkwyOTAuNTg3IDIwOS42MDIgMjkwLjU4NyAyMDYuNzIxQzI5MC40OTIgMjAxLjM0OCAyODguNjY4IDIwMC4wMDMgMjgxLjk1MyAyMDAuMDAzIDI3OC4zNDggMjAwLjAwMyAyNzIuMTk5IDIwMC4yNzIgMjY1Ljk2NyAyMDAuNjk1IDI2My44OSAyMDAuODM4IDI2Mi4wNTggMTk5LjM0NiAyNjEuNzY5IDE5Ny4yODRMMjYxLjY2NiAxOTYuNTQ4Wk0yNzAuNjI4IDIyNC42NjZDMjcwLjYyOCAyMjguNjk4IDI3Mi41NDggMjMwLjQyMyAyNzYuNzcgMjMwLjQyMyAyODAuNDE0IDIzMC40MjMgMjg1Ljc5MSAyMjguNzkzIDI5MC41ODcgMjI0Ljg1NkwyOTAuNTg3IDIxNy41NjMgMjc1LjYxOCAyMTcuNTYzQzI3MS43OCAyMTcuNzU3IDI3MC42MjggMjE5LjY3NiAyNzAuNjI4IDIyMi44NDJMMjcwLjYyOCAyMjQuNjY2WiIgZmlsbD0iI0ZGRkZGRiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMS4wMDE3MSA0OTcuNzIzIDIyMC40OTIpIi8+PHBhdGggZD0iTTMzNy41OSAyMzcuNjUyQzMzNC44MTYgMjQ1LjU0MiAzMjguOTg0IDI1NC41MjggMzE3LjY5NSAyNTUuNjI0IDMxNS41ODYgMjU1LjgzIDMxMy43MDcgMjU0LjI3OSAzMTMuNDM0IDI1Mi4xNzhMMzEzLjM1NCAyNTEuNTY4QzMxMy4xMjEgMjQ5Ljc2IDMxNC4xNDIgMjQ4LjAwMyAzMTUuODUxIDI0Ny4zNTggMzE4Ljk5MyAyNDYuMTc1IDMyMS4zNzUgMjQ0LjY2OCAzMjMuMjE1IDI0Mi43NjQgMzIzLjkwNyAyNDIuMDQ4IDMyMy41OTEgMjQwLjM3NCAzMjMuMDAxIDIzOC42MDIgMzIyLjQ1NSAyMzYuOTYgMzExLjUzIDIwNi45NDcgMzA3LjAwNCAxOTQuNTE5IDMwNi4wNjIgMTkxLjkzMSAzMDcuOTgxIDE4OS4xOTcgMzEwLjczNSAxODkuMTk3TDMxNC41MzggMTg5LjE5N0MzMTYuMjY3IDE4OS4xOTcgMzE3Ljc5OCAxOTAuMzE2IDMxOC4zMiAxOTEuOTY2TDMyNy43MSAyMjEuNTM2QzMyOC4zODMgMjIzLjY0OSAzMjguODYxIDIyNS42NjMgMzI5LjI0NSAyMjcuNzcyTDMzMC41OTEgMjI3Ljc3MkMzMzEuMjYzIDIyNS42NTkgMzMxLjkzMiAyMjMuMzU2IDMzMi41MSAyMjEuNTM2TDM0MS43MTcgMTkxLjk4NkMzNDIuMjM2IDE5MC4zMjggMzQzLjc3MSAxODkuMTk3IDM0NS41MDggMTg5LjE5N0wzNDkuNDEzIDE4OS4xOTdDMzUyLjE2MyAxODkuMTk3IDM1NC4wNzggMTkxLjkyNyAzNTMuMTQ4IDE5NC41MTFMMzM3LjU5OCAyMzcuNjUyWiIgZmlsbD0iI0ZGRkZGRiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMS4wMDE3MSA0OTcuNzIzIDIyMC40OTIpIi8+PC9nPjwvc3ZnPg==" alt="NetPay">
+    </div>
+  </div>
+
+  <h1><span class="brand-aqua">A&amp;D</span> Aquática<br>y <em>Danza</em></h1>
+  <p>Formulario de afiliación e-commerce — Solicitud de procesamiento de pagos en línea vía NetPay × Core Pay</p>
+
+  <!-- Animated wave separator -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#00C9D4" stop-opacity="0.0"/>
+          <stop offset="30%"  stop-color="#00C9D4" stop-opacity="0.25"/>
+          <stop offset="70%"  stop-color="#0077B6" stop-opacity="0.20"/>
+          <stop offset="100%" stop-color="#00C9D4" stop-opacity="0.0"/>
+        </linearGradient>
+        <linearGradient id="wg2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#F5C518" stop-opacity="0.0"/>
+          <stop offset="50%"  stop-color="#F5C518" stop-opacity="0.10"/>
+          <stop offset="100%" stop-color="#F5C518" stop-opacity="0.0"/>
+        </linearGradient>
+      </defs>
+      <!-- Wave 1 — cyan main -->
+      <path d="M0,50 C180,20 360,70 540,45 C720,20 900,65 1080,40 C1260,15 1380,55 1440,45 L1440,80 L0,80 Z" fill="url(#wg1)"/>
+      <!-- Wave 2 — blue deeper -->
+      <path d="M0,60 C240,30 480,75 720,55 C960,35 1200,70 1440,50 L1440,80 L0,80 Z" fill="rgba(0,119,182,0.12)"/>
+      <!-- Wave 3 — gold shimmer -->
+      <path d="M0,70 C360,50 720,80 1080,60 C1260,50 1380,72 1440,65 L1440,80 L0,80 Z" fill="url(#wg2)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ── FORM ── -->
+<div class="form-wrap">
+
+  <!-- 1. DATOS DE LLENADO -->
+  <div class="card">
+    <div class="card-header">
+      <span class="section-num">1</span>
+      <span class="section-icon">📋</span>
+      <h2>Datos de Llenado</h2>
+    </div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div class="field">
+          <label>Fecha <span class="req">*</span></label>
+          <input type="date" id="Fecha_Llenado" required>
+        </div>
+        <div class="field">
+          <label>Llenado por — Nombre <span class="req">*</span></label>
+          <input type="text" id="Llenado_Por_Nombre" placeholder="Nombre completo" required>
+        </div>
+        <div class="field">
+          <label>Puesto <span class="req">*</span></label>
+          <input type="text" id="Llenado_Por_Puesto" placeholder="Ej. Ejecutivo de Cuenta">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. INFORMACIÓN DEL COMERCIO -->
+  <div class="card">
+    <div class="card-header">
+      <span class="section-num">2</span>
+      <span class="section-icon">🏢</span>
+      <h2>Información del Comercio</h2>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="field">
+          <label>Nombre Comercial <span class="req">*</span></label>
+          <input type="text" id="Comercio_Nombre_Comercial" placeholder="Nombre como lo conocen sus clientes" required>
+        </div>
+        <div class="field">
+          <label>Razón Social / Nombre de Persona Física <span class="req">*</span></label>
+          <input type="text" id="Comercio_Razon_Social" placeholder="Nombre legal completo" required>
+        </div>
+        <div class="field">
+          <label>RFC <span class="req">*</span></label>
+          <input type="text" id="Comercio_RFC" placeholder="AAD010101AAA" maxlength="13" style="text-transform:uppercase">
+        </div>
+        <div class="field">
+          <label>Correo de Contacto <span class="req">*</span></label>
+          <input type="email" id="Comercio_Correo_Contacto" placeholder="contacto@comercio.com">
+        </div>
+        <div class="field">
+          <label>Teléfono de Contacto <span class="req">*</span></label>
+          <input type="tel" id="Comercio_Telefono_Contacto" placeholder="55 1234 5678">
+        </div>
+        <div class="field">
+          <label>Página Web del Comercio <span class="req">*</span></label>
+          <input type="url" id="Comercio_Pagina_Web" placeholder="https://www.comercio.com.mx">
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Régimen Fiscal -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Régimen Fiscal <span class="req">*</span></label>
+        <div class="radio-group" id="rg-regimen">
+          <label class="radio-pill" onclick="selectRadio(this,'Comercio_Regimen_Fiscal','Persona Física')">
+            <input type="radio" name="rf" value="Persona Física">
+            <span class="pill-dot"></span> Persona Física
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Comercio_Regimen_Fiscal','Persona Moral')">
+            <input type="radio" name="rf" value="Persona Moral">
+            <span class="pill-dot"></span> Persona Moral
+          </label>
+        </div>
+        <input type="hidden" id="Comercio_Regimen_Fiscal">
+      </div>
+
+      <!-- CFDI Persona Moral -->
+      <div class="field" style="margin-bottom:16px" id="cfdi-section">
+        <label>CFDI — Régimen Fiscal (Persona Moral)
+          <span class="note">Solo aplica si es Persona Moral</span>
+        </label>
+        <select id="Comercio_CFDI_Regimen">
+          <option value="">— Seleccionar régimen —</option>
+          <option value="601">General de Ley Personas Morales (601)</option>
+          <option value="603">Personas Morales con Fines no Lucrativos (603)</option>
+          <option value="610">Residentes en el Extranjero sin Establecimiento Permanente (610)</option>
+          <option value="620">Sociedades Cooperativas de Producción — diferir ingresos (620)</option>
+          <option value="622">Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras (622)</option>
+          <option value="623">Opcional para Grupos de Sociedades (623)</option>
+          <option value="624">Coordinados (624)</option>
+          <option value="626">Régimen Simplificado de Confianza (626)</option>
+        </select>
+      </div>
+
+      <!-- Giro del comercio -->
+      <div class="field">
+        <label>Giro del Comercio <span class="req">*</span></label>
+        <select id="Comercio_Giro">
+          <option value="">— Seleccionar giro —</option>
+          <option value="ABARROTES EN GENERAL, ULTRAMARINOS, SUPERMERCADOS ABARROTES, MISCELANEAS, TIENDAS NATURISTAS, CARNICERIAS">ABARROTES EN GENERAL, ULTRAMARINOS, SUPERMERCADOS ABARROTES, MISCELANEAS, TIENDAS NATURISTAS, CARNICERIAS</option>
+          <option value="ACCESORIOS - ELECTRODOMESTICOS, ELECTRODOMESTICOS - NO CLASIFICADOS">ACCESORIOS - ELECTRODOMESTICOS, ELECTRODOMESTICOS - NO CLASIFICADOS</option>
+          <option value="ACCESORIOS - JARDIN, ACCESORIOS - JARDINERIA">ACCESORIOS - JARDIN, ACCESORIOS - JARDINERIA</option>
+          <option value="ACCESORIOS INDUSTRIALES - NO CLASIFICADOS">ACCESORIOS INDUSTRIALES - NO CLASIFICADOS</option>
+          <option value="ACCESORIOS PARA CHIMENEAS, CHIMENEAS">ACCESORIOS PARA CHIMENEAS, CHIMENEAS</option>
+          <option value="ACCESORIOS PARA FLORERIAS, FLORES E INVERNADEROS">ACCESORIOS PARA FLORERIAS, FLORES E INVERNADEROS</option>
+          <option value="ACUARIOS, ESPECTACULOS MARINOS">ACUARIOS, ESPECTACULOS MARINOS</option>
+          <option value="ADIVINOS, LECTURA DE CARTAS, CIRCOS, PARQUES DE DIVERSION, FERIAS">ADIVINOS, LECTURA DE CARTAS, CIRCOS, PARQUES DE DIVERSION, FERIAS</option>
+          <option value="AEROPUERTOS, TERMINALES AEREAS">AEROPUERTOS, TERMINALES AEREAS</option>
+          <option value="AGENCIAS DE EMPLEOS, SERVICIOS - EVENTOS ESPECIALES">AGENCIAS DE EMPLEOS, SERVICIOS - EVENTOS ESPECIALES</option>
+          <option value="AGENCIAS DE VIAJES, OPERADORAS DE VIAJES">AGENCIAS DE VIAJES, OPERADORAS DE VIAJES</option>
+          <option value="ALFOMBRAS Y TAPETES">ALFOMBRAS Y TAPETES</option>
+          <option value="ALIMENTOS - PROVEEDORES Y DISTRIBUIDORES">ALIMENTOS - PROVEEDORES Y DISTRIBUIDORES</option>
+          <option value="ALMACEN DE ELECTRODOMESTICOS">ALMACEN DE ELECTRODOMESTICOS</option>
+          <option value="ALMACEN DE MERCANCIAS EN GENERAL">ALMACEN DE MERCANCIAS EN GENERAL</option>
+          <option value="ALMACENES, DEPOSITOS, BODEGAS">ALMACENES, DEPOSITOS, BODEGAS</option>
+          <option value="ALTA COSTURA - CABALLEROS Y DAMAS, ALTA COSTURA - DAMAS, SASTRES - DISENO Y COSTURA, SASTRES Y ALTA COSTURA">ALTA COSTURA - CABALLEROS Y DAMAS, ALTA COSTURA - DAMAS, SASTRES - DISENO Y COSTURA, SASTRES Y ALTA COSTURA</option>
+          <option value="ARRENDADORAS DE AUTOS - NO CLASIFICADAS">ARRENDADORAS DE AUTOS - NO CLASIFICADAS</option>
+          <option value="ARTICULO DE PIEL, MALETAS Y EQUIPAJES">ARTICULO DE PIEL, MALETAS Y EQUIPAJES</option>
+          <option value="ARTICULO ORTOPEDICOS, PROTESIS - VENTA, REPARACION Y ACCESORIOS">ARTICULO ORTOPEDICOS, PROTESIS - VENTA, REPARACION Y ACCESORIOS</option>
+          <option value="ARTICULOS DE ESCRITORIO, ARTICULOS DE OFICINA, ARTICULOS ESCOLARES">ARTICULOS DE ESCRITORIO, ARTICULOS DE OFICINA, ARTICULOS ESCOLARES</option>
+          <option value="ARTICULOS DE ESCRITORIO, OFICINA Y PAPELERIA">ARTICULOS DE ESCRITORIO, OFICINA Y PAPELERIA</option>
+          <option value="ARTICULOS PARA LA SORDERA - VENTAS, REPARACION Y ACCESORIOS">ARTICULOS PARA LA SORDERA - VENTAS, REPARACION Y ACCESORIOS</option>
+          <option value="ARTICULOS PARA LOS ARTISTAS, ARTICULOS DE ARTE">ARTICULOS PARA LOS ARTISTAS, ARTICULOS DE ARTE</option>
+          <option value="ARTICULOS RELIGIOSOS">ARTICULOS RELIGIOSOS</option>
+          <option value="ARTICULOS Y ACCESORIOS FOTOGRAFICOS">ARTICULOS Y ACCESORIOS FOTOGRAFICOS</option>
+          <option value="ASEGURADORAS - VENTAS DE SEGUROS, POLIZAS">ASEGURADORAS - VENTAS DE SEGUROS, POLIZAS</option>
+          <option value="ASESOR - FINANCIERO, CONSEJEROS Y ASESORES PERSONALES">ASESOR - FINANCIERO, CONSEJEROS Y ASESORES PERSONALES</option>
+          <option value="ASESORES - FINANCIEROS, CONSEJERO - MATRIMONIAL">ASESORES - FINANCIEROS, CONSEJERO - MATRIMONIAL</option>
+          <option value="ASESORIAS - COMPRA/VENTA BIENES INMUEBLES">ASESORIAS - COMPRA/VENTA BIENES INMUEBLES</option>
+          <option value="ASOCIACIONES - AUTOMOVILISTICAS">ASOCIACIONES - AUTOMOVILISTICAS</option>
+          <option value="ASOCIACIONES - CIVICAS Y FRATERNIDADES, ASOCIACIONES SOCIALES">ASOCIACIONES - CIVICAS Y FRATERNIDADES, ASOCIACIONES SOCIALES</option>
+          <option value="ASOCIACIONES - DE BENEFICIENCIA Y SERVICIO SOCIAL">ASOCIACIONES - DE BENEFICIENCIA Y SERVICIO SOCIAL</option>
+          <option value="AUTOBUSES FORANEOS">AUTOBUSES FORANEOS</option>
+          <option value="AUTOPARTES, ACCESORIOS - AUTOMOTORES">AUTOPARTES, ACCESORIOS - AUTOMOTORES</option>
+          <option value="BAILE - SALONES Y ESCUELAS DE BAILE">BAILE - SALONES Y ESCUELAS DE BAILE</option>
+          <option value="BANDAS, ORQUESTAS, GRUPOS, DIVERSIONES - NO CLASIFICADOS">BANDAS, ORQUESTAS, GRUPOS, DIVERSIONES - NO CLASIFICADOS</option>
+          <option value="BARES - BEBIDAS ALCOHOLICAS, TABERNAS, DISCOTECAS, SALON DE COCKTALES, CENTROS NOCTURNOS">BARES - BEBIDAS ALCOHOLICAS, TABERNAS, DISCOTECAS, SALON DE COCKTALES, CENTROS NOCTURNOS</option>
+          <option value="BICICLETAS - VENTA Y REPARACION">BICICLETAS - VENTA Y REPARACION</option>
+          <option value="BIENES DURADEROS - NO CLASIFICADOS">BIENES DURADEROS - NO CLASIFICADOS</option>
+          <option value="BILLARES">BILLARES</option>
+          <option value="BOLICHES">BOLICHES</option>
+          <option value="BOUTIQUE - ROPA PARA NINOS, ROPA - CABALLEROS Y NINOS">BOUTIQUE - ROPA PARA NINOS, ROPA - CABALLEROS Y NINOS</option>
+          <option value="BOUTIQUE ROPA - ESPECIAL LENCERIAS">BOUTIQUE ROPA - ESPECIAL LENCERIAS</option>
+          <option value="BOUTIQUES ROPA - NINOS Y BEBES">BOUTIQUES ROPA - NINOS Y BEBES</option>
+          <option value="BOUTIQUES ROPA - PARA TODA LA FAMILIA">BOUTIQUES ROPA - PARA TODA LA FAMILIA</option>
+          <option value="BUROS DE CREDITO, BURO DE CREDITO AL CONSUMIDOR">BUROS DE CREDITO, BURO DE CREDITO AL CONSUMIDOR</option>
+          <option value="CALZADO">CALZADO</option>
+          <option value="CAMPAMENTOS - NINOS, CAMPAMENTO - JOVENES">CAMPAMENTOS - NINOS, CAMPAMENTO - JOVENES</option>
+          <option value="CAMPOS DE GOLF - PUBLICO">CAMPOS DE GOLF - PUBLICO</option>
+          <option value="CASAS DE EMPENO">CASAS DE EMPENO</option>
+          <option value="CASINOS, CASAS DE JUEGO, LOTERIAS, JUEGOS DE AZAR">CASINOS, CASAS DE JUEGO, LOTERIAS, JUEGOS DE AZAR</option>
+          <option value="CENTROS DE SERVICIO PARA EQUIPOS DE OFICINA">CENTROS DE SERVICIO PARA EQUIPOS DE OFICINA</option>
+          <option value="CHACHARAS">CHACHARAS</option>
+          <option value="CIMBRAS / MADERERIAS, MATERIALES PARA CONSTRUCCION">CIMBRAS / MADERERIAS, MATERIALES PARA CONSTRUCCION</option>
+          <option value="CINES, TEATROS">CINES, TEATROS</option>
+          <option value="CLINICAS - BELLEZA, CLINICA - SALUD">CLINICAS - BELLEZA, CLINICA - SALUD</option>
+          <option value="CLUBES DE MAYORISTAS">CLUBES DE MAYORISTAS</option>
+          <option value="CLUBES DEPORTIVOS PROFESIONALES">CLUBES DEPORTIVOS PROFESIONALES</option>
+          <option value="CLUBS DEPORTIVOS - MEMBRESIAS">CLUBS DEPORTIVOS - MEMBRESIAS</option>
+          <option value="COLECCION DE MONEDAS, FILATELIA">COLECCION DE MONEDAS, FILATELIA</option>
+          <option value="COMERCIOS ELECTRONICOS VENTAS A TRAVES DE INTERNET">COMERCIOS ELECTRONICOS VENTAS A TRAVES DE INTERNET</option>
+          <option value="COMPANIAS DE MUDANZAS Y ALMACENAJE">COMPANIAS DE MUDANZAS Y ALMACENAJE</option>
+          <option value="COMPUTADORAS - EQUIPO PERIFERICO, SOFTWARE">COMPUTADORAS - EQUIPO PERIFERICO, SOFTWARE</option>
+          <option value="CONGELADORES, VITRINAS CARNICERIAS">CONGELADORES, VITRINAS CARNICERIAS</option>
+          <option value="CONTADORES - PREPARACION DE DECLARACION DE IMPUESTOS">CONTADORES - PREPARACION DE DECLARACION DE IMPUESTOS</option>
+          <option value="CONTRATISTAS CALEFACCION, AIRE ACONDICIONADO Y PLOMERIA">CONTRATISTAS CALEFACCION, AIRE ACONDICIONADO Y PLOMERIA</option>
+          <option value="CONTRATISTAS CARPINTERIA">CONTRATISTAS CARPINTERIA</option>
+          <option value="CONTRATISTAS CONSTRUCTORAS">CONTRATISTAS CONSTRUCTORAS</option>
+          <option value="CONTRATISTAS DEMOLICIONES">CONTRATISTAS DEMOLICIONES</option>
+          <option value="CONTRATISTAS ELECTRICISTAS">CONTRATISTAS ELECTRICISTAS</option>
+          <option value="CONTRATISTAS EN GENERAL - RESIDENCIAL Y COMERCIAL">CONTRATISTAS EN GENERAL - RESIDENCIAL Y COMERCIAL</option>
+          <option value="CONTRATISTAS TECHOS, ESTRUCTURAS Y LAMINAS">CONTRATISTAS TECHOS, ESTRUCTURAS Y LAMINAS</option>
+          <option value="CONTRATISTAS YESO, CANTERA Y MAMPOSTERIA">CONTRATISTAS YESO, CANTERA Y MAMPOSTERIA</option>
+          <option value="COOPERATIVAS AGRICOLAS">COOPERATIVAS AGRICOLAS</option>
+          <option value="CORTINAS, CORTINEROS, TAPICERIAS">CORTINAS, CORTINEROS, TAPICERIAS</option>
+          <option value="CUOTA - PUENTES Y CARRETERAS">CUOTA - PUENTES Y CARRETERAS</option>
+          <option value="DEPORTES Y ACCESORIOS">DEPORTES Y ACCESORIOS</option>
+          <option value="DEPOSITOS DE CERVEZAS, VINATERIAS">DEPOSITOS DE CERVEZAS, VINATERIAS</option>
+          <option value="DISPENSADOR AUTOMATICO DE GASOLINA">DISPENSADOR AUTOMATICO DE GASOLINA</option>
+          <option value="DISTRIBUIDOR DE GAS LICUADO, DIESEL, CARBON">DISTRIBUIDOR DE GAS LICUADO, DIESEL, CARBON</option>
+          <option value="DISTRIBUIDOR DE PINTURAS Y BARNICES">DISTRIBUIDOR DE PINTURAS Y BARNICES</option>
+          <option value="DISTRIBUIDORES CAMPERS Y REMOLQUES">DISTRIBUIDORES CAMPERS Y REMOLQUES</option>
+          <option value="DISTRIBUIDORES DE AUTOMOTORES EN GENERAL">DISTRIBUIDORES DE AUTOMOTORES EN GENERAL</option>
+          <option value="DISTRIBUIDORES DE AUTOMOVILES NUEVOS Y USADOS">DISTRIBUIDORES DE AUTOMOVILES NUEVOS Y USADOS</option>
+          <option value="DISTRIBUIDORES DE CAMIONES NUEVOS Y USADOS">DISTRIBUIDORES DE CAMIONES NUEVOS Y USADOS</option>
+          <option value="DISTRIBUIDORES DE YATES, BARCOS, LANCHAS">DISTRIBUIDORES DE YATES, BARCOS, LANCHAS</option>
+          <option value="DISTRIBUIDORES Y AGENCIAS - MOTOCICLETAS">DISTRIBUIDORES Y AGENCIAS - MOTOCICLETAS</option>
+          <option value="DOCTORES, OTRAS ESPECIALIDADES, MEDICOS">DOCTORES, OTRAS ESPECIALIDADES, MEDICOS</option>
+          <option value="DROGUERIAS, FARMACIAS">DROGUERIAS, FARMACIAS</option>
+          <option value="DULCERIAS, PASTELERIAS Y CONFITERIAS">DULCERIAS, PASTELERIAS Y CONFITERIAS</option>
+          <option value="EQUIPAMIENTO PARA EL HOGAR">EQUIPAMIENTO PARA EL HOGAR</option>
+          <option value="EQUIPO COMERCIAL - NO CLASIFICADO">EQUIPO COMERCIAL - NO CLASIFICADO</option>
+          <option value="EQUIPO Y SUMINISTROS - HOSPITALES, LABORATORIOS">EQUIPO Y SUMINISTROS - HOSPITALES, LABORATORIOS</option>
+          <option value="EQUIPOS DE TELECOMUNICACION">EQUIPOS DE TELECOMUNICACION</option>
+          <option value="ESCUELAS - ADMINISTRACION Y COMERCIALES">ESCUELAS - ADMINISTRACION Y COMERCIALES</option>
+          <option value="ESCUELAS - PROFESIONALES Y DIPLOMADOS">ESCUELAS - PROFESIONALES Y DIPLOMADOS</option>
+          <option value="ESCUELAS - SECUNDARIAS Y PRIMARIAS">ESCUELAS - SECUNDARIAS Y PRIMARIAS</option>
+          <option value="ESTACIONAMIENTOS / PENSIONES">ESTACIONAMIENTOS / PENSIONES</option>
+          <option value="ESTACIONES DE SERVICIO, GASOLINERIAS">ESTACIONES DE SERVICIO, GASOLINERIAS</option>
+          <option value="ESTUDIOS FOTOGRAFICOS">ESTUDIOS FOTOGRAFICOS</option>
+          <option value="EXHIBICIONES Y ATRACCIONES TURISTICAS">EXHIBICIONES Y ATRACCIONES TURISTICAS</option>
+          <option value="FERRETERIA">FERRETERIA</option>
+          <option value="FERROCARRIL DE PASAJEROS">FERROCARRIL DE PASAJEROS</option>
+          <option value="FLORERIAS">FLORERIAS</option>
+          <option value="FOTOGRAFIA, ARTE Y ANUNCIOS COMERCIALES">FOTOGRAFIA, ARTE Y ANUNCIOS COMERCIALES</option>
+          <option value="GALERIAS DE ARTE">GALERIAS DE ARTE</option>
+          <option value="GUARDERIAS, PUERICULTURA">GUARDERIAS, PUERICULTURA</option>
+          <option value="GUARDIAS DE SEGURIDAD">GUARDIAS DE SEGURIDAD</option>
+          <option value="HOSPITALES Y CLINICAS">HOSPITALES Y CLINICAS</option>
+          <option value="JARDINES BOTANICOS, ZOOLOGICOS">JARDINES BOTANICOS, ZOOLOGICOS</option>
+          <option value="JUGUETERIAS">JUGUETERIAS</option>
+          <option value="LABORATORIOS DENTALES Y MEDICOS">LABORATORIOS DENTALES Y MEDICOS</option>
+          <option value="LECHERIAS, CREMERIAS, LACTEOS">LECHERIAS, CREMERIAS, LACTEOS</option>
+          <option value="LIBRERIAS">LIBRERIAS</option>
+          <option value="LIBROS, PERIODICOS Y REVISTAS">LIBROS, PERIODICOS Y REVISTAS</option>
+          <option value="LIMOSINAS, TAXIS">LIMOSINAS, TAXIS</option>
+          <option value="LLANTAS - AUTOMOTORES">LLANTAS - AUTOMOTORES</option>
+          <option value="MANTENIMIENTO Y REPARACION DE COMPUTADORAS">MANTENIMIENTO Y REPARACION DE COMPUTADORAS</option>
+          <option value="MATERIALES PARA LA CONSTRUCCION">MATERIALES PARA LA CONSTRUCCION</option>
+          <option value="MEDICINAS Y FARMACOS">MEDICINAS Y FARMACOS</option>
+          <option value="MERCERIAS">MERCERIAS</option>
+          <option value="METALES Y PIEDRAS PRECIOSAS, JOYERIA">METALES Y PIEDRAS PRECIOSAS, JOYERIA</option>
+          <option value="MUEBLES PARA EL HOGAR">MUEBLES PARA EL HOGAR</option>
+          <option value="MUEBLES PARA OFICINA Y COMERCIOS">MUEBLES PARA OFICINA Y COMERCIOS</option>
+          <option value="OPTICAS, LENTES Y ANTEOJOS">OPTICAS, LENTES Y ANTEOJOS</option>
+          <option value="ORGANIZACIONES RELIGIOSAS">ORGANIZACIONES RELIGIOSAS</option>
+          <option value="ORGANIZACIONES DE BENEFICENCIA">ORGANIZACIONES DE BENEFICENCIA</option>
+          <option value="ORTODONCISTAS, DENTISTAS">ORTODONCISTAS, DENTISTAS</option>
+          <option value="OTROS SERVICIOS EMPRESARIALES">OTROS SERVICIOS EMPRESARIALES</option>
+          <option value="PANADERIAS">PANADERIAS</option>
+          <option value="PAPEL TAPIZ, PINTURAS Y VIDRIERIAS">PAPEL TAPIZ, PINTURAS Y VIDRIERIAS</option>
+          <option value="PARTES Y EQUIPO ELECTRICO">PARTES Y EQUIPO ELECTRICO</option>
+          <option value="PEDICURISTAS, QUIROPEDISTAS">PEDICURISTAS, QUIROPEDISTAS</option>
+          <option value="PETROLEO Y PRODUCTOS DERIVADOS">PETROLEO Y PRODUCTOS DERIVADOS</option>
+          <option value="PRODUCCION Y DISTRIBUCION DE PELICULAS Y VIDEOS">PRODUCCION Y DISTRIBUCION DE PELICULAS Y VIDEOS</option>
+          <option value="PRODUCTOS QUIMICOS">PRODUCTOS QUIMICOS</option>
+          <option value="PROYECTOS INGENIERILES Y DE ARQUITECTURA">PROYECTOS INGENIERILES Y DE ARQUITECTURA</option>
+          <option value="PUBLICACIONES E IMPRESIONES EN GENERAL">PUBLICACIONES E IMPRESIONES EN GENERAL</option>
+          <option value="QUIROPRACTICOS">QUIROPRACTICOS</option>
+          <option value="RELOJERIAS, JOYERIAS, PLATERIAS">RELOJERIAS, JOYERIAS, PLATERIAS</option>
+          <option value="RENTA DE CAMIONES Y REMOLQUES">RENTA DE CAMIONES Y REMOLQUES</option>
+          <option value="RENTA DE MUEBLES Y EQUIPO">RENTA DE MUEBLES Y EQUIPO</option>
+          <option value="RENTA DE VIDEOS">RENTA DE VIDEOS</option>
+          <option value="RESTAURANTES - COMIDA RAPIDA">RESTAURANTES - COMIDA RAPIDA</option>
+          <option value="RESTAURANTES, CAFETERIAS">RESTAURANTES, CAFETERIAS</option>
+          <option value="ROPA - DEPORTIVA">ROPA - DEPORTIVA</option>
+          <option value="ROPA PARA CABALLEROS Y DAMAS">ROPA PARA CABALLEROS Y DAMAS</option>
+          <option value="SALONES DE BELLEZA, PELUQUERIAS, ESTETICAS">SALONES DE BELLEZA, PELUQUERIAS, ESTETICAS</option>
+          <option value="SERVICIO - GRUAS Y TRASLADOS">SERVICIO - GRUAS Y TRASLADOS</option>
+          <option value="SERVICIO - LAVADO DE AUTOS">SERVICIO - LAVADO DE AUTOS</option>
+          <option value="SERVICIO - LAVANDERIAS">SERVICIO - LAVANDERIAS</option>
+          <option value="SERVICIO DE FOTOCOPIADO">SERVICIO DE FOTOCOPIADO</option>
+          <option value="SERVICIO DE PROCESAMIENTO DE DATOS">SERVICIO DE PROCESAMIENTO DE DATOS</option>
+          <option value="SERVICIOS - CONTABILIDAD Y AUDITORIAS">SERVICIOS - CONTABILIDAD Y AUDITORIAS</option>
+          <option value="SERVICIOS - FUNERARIOS, CREMATORIOS">SERVICIOS - FUNERARIOS, CREMATORIOS</option>
+          <option value="SERVICIOS - PUBLICITARIOS">SERVICIOS - PUBLICITARIOS</option>
+          <option value="SERVICIOS - CONSULTORIA Y ADMINISTRACION">SERVICIOS - CONSULTORIA Y ADMINISTRACION</option>
+          <option value="SERVICIOS DE AMBULANCIA">SERVICIOS DE AMBULANCIA</option>
+          <option value="SERVICIOS DE JARDINERIA">SERVICIOS DE JARDINERIA</option>
+          <option value="SERVICIOS LEGALES, ABOGADOS">SERVICIOS LEGALES, ABOGADOS</option>
+          <option value="SERVICIOS MEDICOS Y PARAMEDICOS">SERVICIOS MEDICOS Y PARAMEDICOS</option>
+          <option value="SERVICIOS NO CLASIFICADOS - HOTELES Y MOTELES">SERVICIOS NO CLASIFICADOS - HOTELES Y MOTELES</option>
+          <option value="SERVICIOS VETERINARIOS">SERVICIOS VETERINARIOS</option>
+          <option value="SINDICATOS Y ASOCIACIONES PROFESIONALES">SINDICATOS Y ASOCIACIONES PROFESIONALES</option>
+          <option value="TALLERES - MECANICOS">TALLERES - MECANICOS</option>
+          <option value="TALLERES - PINTURA DE AUTOS">TALLERES - PINTURA DE AUTOS</option>
+          <option value="TALLERES - VULCANIZADORAS">TALLERES - VULCANIZADORAS</option>
+          <option value="TALLERES DE REPARACION ELECTRICA">TALLERES DE REPARACION ELECTRICA</option>
+          <option value="TEATROS Y CINES">TEATROS Y CINES</option>
+          <option value="TELAS Y CASIMIRES">TELAS Y CASIMIRES</option>
+          <option value="TIENDA DE DISCOS">TIENDA DE DISCOS</option>
+          <option value="TIENDAS - COSMETICOS">TIENDAS - COSMETICOS</option>
+          <option value="TIENDAS DE ANTIGUEDADES">TIENDAS DE ANTIGUEDADES</option>
+          <option value="TIENDAS DE ARTICULOS USADOS">TIENDAS DE ARTICULOS USADOS</option>
+          <option value="TIENDAS DE CONVENIENCIA, MINISUPER">TIENDAS DE CONVENIENCIA, MINISUPER</option>
+          <option value="TIENDAS DE ELECTRONICA">TIENDAS DE ELECTRONICA</option>
+          <option value="TIENDAS DE MASCOTAS">TIENDAS DE MASCOTAS</option>
+          <option value="TIENDAS DE MUSICA">TIENDAS DE MUSICA</option>
+          <option value="TIENDAS DE REGALOS Y ARTESANIAS">TIENDAS DE REGALOS Y ARTESANIAS</option>
+          <option value="TIENDAS DE SOFTWARE PARA COMPUTADORAS">TIENDAS DE SOFTWARE PARA COMPUTADORAS</option>
+          <option value="TIENDAS DEPARTAMENTALES">TIENDAS DEPARTAMENTALES</option>
+          <option value="TINTORERIAS">TINTORERIAS</option>
+          <option value="TIPOGRAFIAS Y PLACAS">TIPOGRAFIAS Y PLACAS</option>
+          <option value="TRANSACCIONES EN TRANSITO CARRETERO">TRANSACCIONES EN TRANSITO CARRETERO</option>
+          <option value="TRANSPORTE URBANO Y SUBURBANO">TRANSPORTE URBANO Y SUBURBANO</option>
+          <option value="TRASLADOS - FLETES Y MENSAJERIA">TRASLADOS - FLETES Y MENSAJERIA</option>
+          <option value="UNIVERSIDADES, COLEGIOS Y PREPARATORIAS">UNIVERSIDADES, COLEGIOS Y PREPARATORIAS</option>
+          <option value="VEHICULOS DE MOTOR, ACCESORIOS Y AUTOPARTES">VEHICULOS DE MOTOR, ACCESORIOS Y AUTOPARTES</option>
+          <option value="VENTA DE VIDEO JUEGOS">VENTA DE VIDEO JUEGOS</option>
+          <option value="VENTA, SERVICIO Y ACCESORIOS - ALBERCAS">VENTA, SERVICIO Y ACCESORIOS - ALBERCAS</option>
+          <option value="VIDEO JUEGOS - ESTABLECIMIENTOS">VIDEO JUEGOS - ESTABLECIMIENTOS</option>
+          <option value="ZAPATERIAS">ZAPATERIAS</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PRODUCTO DE INTERÉS -->
+  <div class="card">
+    <div class="card-header">
+      <span class="section-num">3</span>
+      <span class="section-icon">🛒</span>
+      <h2>Producto de Interés</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="field" style="margin-bottom:16px">
+        <label>Tipo de Producto Principal <span class="req">*</span></label>
+        <div class="radio-group" id="rg-producto">
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Principal','Checkout')">
+            <input type="radio" name="prod" value="Checkout">
+            <span class="pill-dot"></span> Checkout
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Principal','Loop')">
+            <input type="radio" name="prod" value="Loop">
+            <span class="pill-dot"></span> Loop
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Principal','Link')">
+            <input type="radio" name="prod" value="Link">
+            <span class="pill-dot"></span> Link
+          </label>
+        </div>
+        <input type="hidden" id="Producto_Tipo_Principal">
+      </div>
+
+      <div class="field" style="margin-bottom:16px">
+        <label>Tipo de Integración Requerida <span class="req">*</span></label>
+        <div class="radio-group" id="rg-integracion">
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Integracion','Plug in')">
+            <input type="radio" name="integ" value="Plug in">
+            <span class="pill-dot"></span> Plug-in
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Integracion','Custom Checkout')">
+            <input type="radio" name="integ" value="Custom Checkout">
+            <span class="pill-dot"></span> Custom Checkout
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Integracion','Hosted Checkout')">
+            <input type="radio" name="integ" value="Hosted Checkout">
+            <span class="pill-dot"></span> Hosted Checkout
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Integracion','Seamless Checkout')">
+            <input type="radio" name="integ" value="Seamless Checkout">
+            <span class="pill-dot"></span> Seamless Checkout
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Producto_Tipo_Integracion','Sin definir')">
+            <input type="radio" name="integ" value="Sin definir">
+            <span class="pill-dot"></span> Sin definir
+          </label>
+        </div>
+        <input type="hidden" id="Producto_Tipo_Integracion">
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="field" style="margin-bottom:14px">
+        <label>¿Requiere más de un producto?</label>
+        <div class="radio-group">
+          <label class="radio-pill" onclick="toggleProductoAdicional(true, this)">
+            <input type="radio" name="multi" value="Si">
+            <span class="pill-dot"></span> Sí
+          </label>
+          <label class="radio-pill" onclick="toggleProductoAdicional(false, this)">
+            <input type="radio" name="multi" value="No">
+            <span class="pill-dot"></span> No
+          </label>
+        </div>
+        <input type="hidden" id="Producto_Requiere_Adicional">
+      </div>
+
+      <!-- Productos adicionales (aparece si Sí) -->
+      <div id="adicional-section" style="display:none">
+          <div class="field" style="margin-bottom:14px">
+          <label>Producto(s) Adicional(es) <span class="req">*</span><span class="note">Puedes seleccionar uno o ambos</span></label>
+          <div class="check-group">
+            <button type="button" class="check-pill" id="cp-link" onclick="toggleMultiPill('cp-link','Producto_Adicional_Link')">
+              <span class="pill-check" id="pill-check-link">✓</span> Link
+            </button>
+            <button type="button" class="check-pill" id="cp-loop" onclick="toggleMultiPill('cp-loop','Producto_Adicional_Loop')">
+              <span class="pill-check" id="pill-check-loop">✓</span> Loop
+            </button>
+          </div>
+          <input type="hidden" id="Producto_Adicional_Link" value="">
+          <input type="hidden" id="Producto_Adicional_Loop" value="">
+        </div>
+        <div class="field">
+          <label>Comentarios sobre Productos Adicionales</label>
+          <textarea id="Producto_Comentarios_Adicionales" placeholder="Especifica el detalle de los productos adicionales..."></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. FACTURACIÓN -->
+  <div class="card">
+    <div class="card-header">
+      <span class="section-num">4</span>
+      <span class="section-icon">💳</span>
+      <h2>Facturación y Parámetros de Operación</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="field" style="margin-bottom:16px">
+        <label>Facturación Estimada Mensual — Detalle
+          <span class="note">Ingresa el monto estimado mensual de facturación</span>
+        </label>
+        <div class="currency-input-wrap">
+          <span class="currency-symbol">$</span>
+          <input type="text" id="Facturacion_Monto_Estimado_Mensual_Detalle"
+            placeholder="0"
+            oninput="formatThousands(this)"
+            class="currency-input">
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:16px">
+        <label>Facturación Estimada Mensual — Rango <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="radio-pill" onclick="selectRadio(this,'Facturacion_Estimada_Mensual_Rango','0-50k')">
+            <input type="radio" name="fact" value="0-50k">
+            <span class="pill-dot"></span> $0 – $50k
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Facturacion_Estimada_Mensual_Rango','50k-299k')">
+            <input type="radio" name="fact" value="50k-299k">
+            <span class="pill-dot"></span> $50k – $299k
+          </label>
+          <label class="radio-pill" onclick="selectRadio(this,'Facturacion_Estimada_Mensual_Rango','300k o más')">
+            <input type="radio" name="fact" value="300k o más">
+            <span class="pill-dot"></span> $300k o más
+          </label>
+        </div>
+        <input type="hidden" id="Facturacion_Estimada_Mensual_Rango">
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px">
+        <div class="bool-row" id="br-amex">
+          <div class="bool-label">¿El comercio realizará transacciones con tarjeta AMEX?</div>
+          <div class="toggle-btns">
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_AMEX','Si','br-amex',this)">Sí</button>
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_AMEX','No','br-amex',this)">No</button>
+          </div>
+          <input type="hidden" id="Facturacion_Acepta_AMEX">
+        </div>
+        <div class="bool-row" id="br-intl">
+          <div class="bool-label">¿El comercio realizará transacciones con tarjetas Internacionales?</div>
+          <div class="toggle-btns">
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_Tarjetas_Internacionales','Si','br-intl',this)">Sí</button>
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_Tarjetas_Internacionales','No','br-intl',this)">No</button>
+          </div>
+          <input type="hidden" id="Facturacion_Acepta_Tarjetas_Internacionales">
+        </div>
+        <div class="bool-row" id="br-vales">
+          <div class="bool-label">¿El comercio realizará transacciones con tarjetas de VALES?</div>
+          <div class="toggle-btns">
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_Vales','Si','br-vales',this)">Sí</button>
+            <button class="toggle-btn" onclick="setToggle('Facturacion_Acepta_Vales','No','br-vales',this)">No</button>
+          </div>
+          <input type="hidden" id="Facturacion_Acepta_Vales">
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 3DS SUBSECTION -->
+      <div style="background:var(--gray-50); border:1.5px solid var(--gray-200); border-radius:10px; padding:18px 18px 20px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+          <span style="font-size:15px;">🔐</span>
+          <span style="font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.6px;">Parámetros 3DS — Doble Factor de Autenticación</span>
+        </div>
+      <!-- 3DS fields — 3 columns as per spec -->
+      <div class="grid-3" style="margin-bottom:8px">
+        <div class="field">
+          <label>¿A partir de qué monto se enviarán a 3DS? <span class="req">*</span>
+            <span class="note">Doble factor de autenticación en Cybersource</span>
+          </label>
+          <input type="text" id="Facturacion_Monto_Inicio_3DS" placeholder="$0" oninput="formatThousands(this)">
+        </div>
+        <div class="field">
+          <label>¿Se aceptarán transacciones con estas Tarjetas? <span class="req">*</span>
+            <span class="note">Tarjetas que no participan en 3DS — susceptibles de contracargo</span>
+          </label>
+          <select id="Facturacion_Acepta_Tarjetas_Sin_3DS">
+            <option value="">— Seleccionar —</option>
+            <option value="Si">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Favor de informar el monto máximo de la transacción <span class="req">*</span>
+            <span class="note">No se validará por 3DS — susceptible a contracargo</span>
+          </label>
+          <input type="text" id="Facturacion_Monto_Maximo_Por_Transaccion_3DS" placeholder="$0" oninput="formatThousands(this)">
+        </div>
+      </div>
+
+      </div><!-- /3DS subsection -->
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Monto Máximo de Transacción por Día</label>
+          <input type="text" id="Facturacion_Monto_Maximo_Por_Dia" placeholder="$0" oninput="formatThousands(this)">
+        </div>
+        <div class="field">
+          <label>Monto Mínimo de Transacción por Día</label>
+          <input type="text" id="Facturacion_Monto_Minimo_Por_Dia" placeholder="$0" oninput="formatThousands(this)">
+        </div>
+        <div class="field">
+          <label>Ticket Promedio Estimado por Día</label>
+          <input type="text" id="Facturacion_Ticket_Promedio_Por_Dia" placeholder="$0" oninput="formatThousands(this)">
+        </div>
+        <div class="field">
+          <label>Compras por Cliente por Día</label>
+          <input type="number" id="Facturacion_Compras_Por_Cliente_Por_Dia" placeholder="0" min="0">
+        </div>
+        <div class="field">
+          <label>Transacciones (Misma Tarjeta + Mismo Monto) por Día</label>
+          <input type="number" id="Facturacion_Transacciones_Misma_Tarjeta_Monto_Por_Dia" placeholder="0" min="0">
+        </div>
+        <div class="field">
+          <label>Horario de Venta</label>
+          <input type="text" id="Facturacion_Horario_Venta" placeholder="Ej. 9:00 – 21:00 hrs, Lun – Sáb">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. REQUERIMIENTOS PÁGINA WEB -->
+  <div class="card">
+    <div class="card-header">
+      <span class="section-num">5</span>
+      <span class="section-icon">🌐</span>
+      <h2>Requerimientos de Página Web</h2>
+    </div>
+    <div class="card-body">
+      <div style="background:#FFF8E1; border:1.5px solid #FFD54F; border-radius:8px; padding:12px 16px; margin-bottom:16px; display:flex; gap:10px; align-items:flex-start;">
+        <span style="font-size:18px; flex-shrink:0;">⚠️</span>
+        <p style="font-size:12.5px; color:#7B4F00; line-height:1.6; margin:0">
+          <strong>El comercio debe confirmar cada punto marcando la casilla.</strong><br>
+          Para procesar pagos en línea vía NetPay, la página web debe cumplir estos requisitos de manera obligatoria. Al marcar cada casilla, el comercio confirma que comprende y cumple con el requisito correspondiente.
+        </p>
+      </div>
+      <div class="checklist">
+        <label class="checklist-item" id="ci-contacto" onclick="syncChecklist(this,'Web_Tiene_Info_Contacto')">
+          <input type="checkbox" id="Web_Tiene_Info_Contacto">
+          <span>Información de contacto del comercio visible en la página</span>
+        </label>
+        <label class="checklist-item" id="ci-terminos" onclick="syncChecklist(this,'Web_Tiene_Terminos_Condiciones')">
+          <input type="checkbox" id="Web_Tiene_Terminos_Condiciones">
+          <span>Términos y condiciones de servicio publicados</span>
+        </label>
+        <label class="checklist-item" id="ci-devol" onclick="syncChecklist(this,'Web_Tiene_Politica_Devoluciones')">
+          <input type="checkbox" id="Web_Tiene_Politica_Devoluciones">
+          <span>Política de devoluciones y reembolsos publicada</span>
+        </label>
+        <label class="checklist-item" id="ci-privacidad" onclick="syncChecklist(this,'Web_Tiene_Aviso_Privacidad')">
+          <input type="checkbox" id="Web_Tiene_Aviso_Privacidad">
+          <span>Aviso de privacidad conforme a LFPDPPP</span>
+        </label>
+        <label class="checklist-item" id="ci-checkout" onclick="syncChecklist(this,'Web_Checkout_Funcional')">
+          <input type="checkbox" id="Web_Checkout_Funcional">
+          <span>Checkout implementado y funcional en el sitio</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /form-wrap -->
+
+<!-- STATUS BANNER -->
+<div id="status-banner"></div>
+
+<script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxCfWSYiMzZRm3vrgHBmlA3VDquh3WK18XoSdIH1rMNA1VOV8Ch9YNKBt9VanaX2XvLfA/exec";
+
+// ─── RADIO PILLS ───
+function selectRadio(el, fieldId, value) {
+  const group = el.closest('.radio-group') || el.parentElement;
+  group.querySelectorAll('.radio-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById(fieldId).value = value;
+}
+
+// ─── TOGGLE PRODUCTO ADICIONAL ───
+function toggleProductoAdicional(show, el) {
+  const group = el.closest('.radio-group') || el.parentElement;
+  group.querySelectorAll('.radio-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('Producto_Requiere_Adicional').value = show ? 'Si' : 'No';
+  document.getElementById('adicional-section').style.display = show ? 'block' : 'none';
+}
+
+// ─── MULTI-SELECT PILLS (independent toggle) ───
+function toggleMultiPill(pillId, fieldId) {
+  const btn = document.getElementById(pillId);
+  const hidden = document.getElementById(fieldId);
+  const isSelected = btn.classList.contains('selected');
+  btn.classList.toggle('selected');
+  hidden.value = isSelected ? '' : 'Si';
+}
+
+// ─── TOGGLE BUTTONS (Sí/No) ───
+function setToggle(fieldId, value, rowId, btn) {
+  document.getElementById(fieldId).value = value;
+  const row = document.getElementById(rowId);
+  row.querySelectorAll('.toggle-btn').forEach(b => {
+    b.classList.remove('active-yes','active-no');
+  });
+  btn.classList.add(value === 'Si' ? 'active-yes' : 'active-no');
+}
+
+// ─── CHECKLIST — sync row style with native checkbox ───
+function syncChecklist(labelEl, fieldId) {
+  // Let the browser toggle the checkbox naturally (click event fires before this)
+  // Use setTimeout to read state AFTER browser toggles it
+  setTimeout(() => {
+    const cb = document.getElementById(fieldId);
+    if (cb.checked) {
+      labelEl.classList.add('checked');
+    } else {
+      labelEl.classList.remove('checked');
+    }
+  }, 0);
+}
+
+// ─── CURRENCY / THOUSANDS FORMAT ───
+function formatThousands(input) {
+  // Strip everything except digits and decimal point
+  let raw = input.value.replace(/[^0-9.]/g, '');
+  if (!raw) { input.value = ''; return; }
+  // Split integer and decimal parts
+  let parts = raw.split('.');
+  let intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  let result = parts.length > 1 ? intPart + '.' + parts[1].slice(0,2) : intPart;
+  input.value = '$' + result;
+}
+// Legacy alias
+function formatCurrency(input) { formatThousands(input); }
+
+// ─── LOGO PREVIEW ───
+function previewLogo(input, id) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const container = input.closest('.logo-placeholder');
+    container.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ─── COLLECT PAYLOAD ───
+function getPayload() {
+  const ids = [
+    "Fecha_Llenado","Llenado_Por_Nombre","Llenado_Por_Puesto",
+    "Comercio_Nombre_Comercial","Comercio_Razon_Social","Comercio_RFC",
+    "Comercio_Correo_Contacto","Comercio_Telefono_Contacto","Comercio_Pagina_Web",
+    "Comercio_Regimen_Fiscal","Comercio_CFDI_Regimen","Comercio_Giro",
+    "Producto_Tipo_Principal","Producto_Tipo_Integracion",
+    "Producto_Requiere_Adicional","Producto_Adicional_Link","Producto_Adicional_Loop",
+    "Producto_Comentarios_Adicionales",
+    "Facturacion_Monto_Estimado_Mensual_Detalle","Facturacion_Estimada_Mensual_Rango",
+    "Facturacion_Acepta_AMEX","Facturacion_Acepta_Tarjetas_Internacionales",
+    "Facturacion_Acepta_Vales",
+    "Facturacion_Monto_Inicio_3DS","Facturacion_Acepta_Tarjetas_Sin_3DS",
+    "Facturacion_Monto_Maximo_Por_Transaccion_3DS",
+    "Facturacion_Monto_Maximo_Por_Dia","Facturacion_Monto_Minimo_Por_Dia",
+    "Facturacion_Ticket_Promedio_Por_Dia",
+    "Facturacion_Compras_Por_Cliente_Por_Dia",
+    "Facturacion_Transacciones_Misma_Tarjeta_Monto_Por_Dia",
+    "Facturacion_Horario_Venta",
+    "Web_Tiene_Info_Contacto","Web_Tiene_Terminos_Condiciones",
+    "Web_Tiene_Politica_Devoluciones","Web_Tiene_Aviso_Privacidad","Web_Checkout_Funcional"
+  ];
+
+  const payload = {};
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // Strip commas (thousands separator) from currency/numeric fields
+    let val = el.value || '';
+    // For native checkboxes, read .checked
+    if (el.type === 'checkbox') val = el.checked ? 'Si' : 'No';
+    val = val.replace(/[$,]/g, ''); // remove $ symbol and thousand separators
+    payload[id] = val;
+  });
+  return payload;
+}
+
+// ─── VALIDATE REQUIRED ───
+function validate() {
+  const required = [
+    "Fecha_Llenado","Llenado_Por_Nombre","Comercio_Nombre_Comercial",
+    "Comercio_Razon_Social","Comercio_RFC","Comercio_Correo_Contacto",
+    "Comercio_Telefono_Contacto","Comercio_Pagina_Web",
+    "Comercio_Regimen_Fiscal","Comercio_Giro",
+    "Producto_Tipo_Principal","Producto_Tipo_Integracion",
+    "Facturacion_Estimada_Mensual_Rango"
+  ];
+  for (const id of required) {
+    const el = document.getElementById(id);
+    if (!el || !el.value.trim()) {
+      showBanner(`Campo requerido: ${id.replace(/_/g,' ')}`, 'error');
+      el && el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el && el.focus();
+      return false;
+    }
+  }
+  return true;
+}
+
+// ─── SUBMIT ───
+async function handleSubmit() {
+  if (!validate()) return;
+
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+
+  if (!WEB_APP_URL) {
+    showBanner('⚠ WEB_APP_URL no configurada. Inserta la URL del Apps Script.', 'error');
+    btn.disabled = false;
+    btn.innerHTML = '📤 Enviar diagnóstico';
+    return;
+  }
+
+  try {
+    const payload = getPayload();
+    // Apps Script requiere no-cors desde browser externo
+    await fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    // no-cors no permite leer la respuesta — si llegó aquí sin error, se envió
+    showBanner('✅ Formulario enviado correctamente', 'success');
+  } catch (err) {
+    showBanner('❌ Error de conexión: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '📤 Enviar diagnóstico';
+  }
+}
+
+// ─── SAVE DRAFT ───
+function saveDraft() {
+  const payload = getPayload();
+  localStorage.setItem('draft_ecommerce_afiliacion', JSON.stringify(payload));
+  showBanner('💾 Borrador guardado localmente', 'success');
+}
+
+// ─── LOAD DRAFT ───
+function loadDraft() {
+  const raw = localStorage.getItem('draft_ecommerce_afiliacion');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    Object.entries(data).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    });
+  } catch(e) {}
+}
+
+// ─── CLEAR FORM ───
+function clearForm() {
+  if (!confirm('¿Limpiar todos los campos? Esta acción no se puede deshacer.')) return;
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    if (el.type === 'hidden' || el.type === 'checkbox' || el.type === 'radio') {
+      el.value = ''; el.checked = false;
+    } else { el.value = ''; }
+  });
+  document.querySelectorAll('.radio-pill').forEach(p => p.classList.remove('selected'));
+  document.querySelectorAll('.check-pill').forEach(p => p.classList.remove('selected'));
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active-yes','active-no'));
+  document.querySelectorAll('.checklist-item').forEach(ci => ci.classList.remove('checked'));
+  document.getElementById('adicional-section').style.display = 'none';
+  showBanner('🗑 Formulario limpiado', 'success');
+}
+
+// ─── BANNER ───
+function showBanner(msg, type) {
+  const b = document.getElementById('status-banner');
+  b.textContent = msg;
+  b.className = type;
+  b.style.display = 'block';
+  setTimeout(() => { b.style.display = 'none'; }, 4000);
+}
+
+// ─── WATER CANVAS ANIMATION ───
+(function() {
+  const canvas = document.getElementById('waterCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ── WAVES — extra slow, meditative ──
+  const waves = [
+    { speed: 0.0009, amp: 20, freq: 0.007, phase: 0,   color: 'rgba(0,201,212,0.16)', y: 0.58 },
+    { speed: 0.0012, amp: 14, freq: 0.010, phase: 2.1, color: 'rgba(0,119,182,0.12)', y: 0.65 },
+    { speed: 0.0007, amp: 26, freq: 0.005, phase: 4.3, color: 'rgba(0,201,212,0.09)', y: 0.50 },
+    { speed: 0.0015, amp: 10, freq: 0.014, phase: 1.0, color: 'rgba(245,197,24,0.07)',y: 0.72 },
+    { speed: 0.0010, amp: 16, freq: 0.006, phase: 3.7, color: 'rgba(0,150,200,0.10)', y: 0.43 },
+  ];
+
+
+  // ── BUBBLES — gentle rise ──
+  const bubbles = Array.from({length: 16}, () => ({
+    x: Math.random(),
+    y: 0.3 + Math.random() * 0.7,
+    r: 1.2 + Math.random() * 3,
+    speed: 0.00008 + Math.random() * 0.00016,
+    drift: (Math.random() - 0.5) * 0.00012,
+    alpha: 0.05 + Math.random() * 0.14,
+    phase: Math.random() * Math.PI * 2,
+  }));
+
+  // ── STATE ──
+  const fish  = { x: 0.60, y: 0.52, size: 9,  tailPhase: 0 };
+  const shark = { x: 0.35, y: 0.52, size: 22, tailPhase: 0, mouth: 0 };
+  const kid   = { x: 0.05, y: 0.50, size: 16, armPhase: 0, kickPhase: 0 };
+
+  let t = 0;
+
+  // ── DRAW FISH ──
+  function drawFish(x, y, size, tailWag, scared) {
+    ctx.save();
+    ctx.translate(x, y);
+    const tw = Math.sin(tailWag) * (scared ? 0.60 : 0.32);
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.8, 0);
+    ctx.lineTo(-size * 1.5, -size * (0.48 + tw));
+    ctx.lineTo(-size * 1.5,  size * (0.48 - tw));
+    ctx.closePath();
+    ctx.fillStyle = '#F5C518'; ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(0, 0, size, size * 0.44, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#F5C518'; ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(size*0.1, size*0.1, size*0.55, size*0.22, 0, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,240,100,0.55)'; ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(-size*0.1,-size*0.4); ctx.lineTo(0,-size*0.80); ctx.lineTo(size*0.3,-size*0.40);
+    ctx.closePath(); ctx.fillStyle = 'rgba(245,180,0,0.70)'; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(size*0.52,-size*0.10,size*0.14,0,Math.PI*2);
+    ctx.fillStyle = '#0A1628'; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(size*0.55,-size*0.14,size*0.055,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.fill();
+    if (scared) {
+      ctx.font = `bold ${size*0.9}px sans-serif`;
+      ctx.fillStyle = 'rgba(255,80,80,0.85)';
+      ctx.fillText('!', size*0.7, -size*1.1);
+    }
+    ctx.restore();
+  }
+
+  // ── DRAW SHARK ──
+  function drawShark(x, y, size, tailWag, mouth) {
+    ctx.save();
+    ctx.translate(x, y);
+    const st = Math.sin(tailWag) * 0.30;
+    ctx.beginPath();
+    ctx.moveTo(-size*0.82,0);
+    ctx.lineTo(-size*1.48,-size*(0.44+st));
+    ctx.lineTo(-size*1.48, size*(0.44-st));
+    ctx.closePath(); ctx.fillStyle = 'rgba(0,195,210,0.72)'; ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(0,0,size,size*0.37,0,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(0,201,212,0.78)'; ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(size*0.08,size*0.12,size*0.65,size*0.18,0,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(200,245,248,0.35)'; ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(size*0.72,-size*0.06);
+    ctx.quadraticCurveTo(size*1.22,-size*0.10,size*1.08,size*0.10);
+    ctx.quadraticCurveTo(size*0.88,size*0.08,size*0.72,size*0.06);
+    ctx.closePath(); ctx.fillStyle = 'rgba(0,185,200,0.88)'; ctx.fill();
+    if (mouth > 0.1) {
+      ctx.beginPath();
+      ctx.moveTo(size*0.82,0); ctx.lineTo(size*1.08, mouth*size*0.18);
+      ctx.strokeStyle = 'rgba(255,255,255,0.55)'; ctx.lineWidth = 1.8; ctx.stroke();
+      for (let i=0;i<3;i++){
+        const tx=size*(0.86+i*0.08);
+        ctx.beginPath(); ctx.moveTo(tx,mouth*size*0.04);
+        ctx.lineTo(tx+size*0.03,mouth*size*0.12); ctx.lineTo(tx+size*0.06,mouth*size*0.04);
+        ctx.fillStyle='rgba(255,255,255,0.80)'; ctx.fill();
+      }
+    }
+    ctx.beginPath();
+    ctx.moveTo(size*0.12,-size*0.34); ctx.lineTo(-size*0.04,-size*0.88); ctx.lineTo(-size*0.32,-size*0.34);
+    ctx.closePath(); ctx.fillStyle = 'rgba(0,180,195,0.82)'; ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(size*0.22,size*0.20); ctx.lineTo(size*0.06,size*0.68); ctx.lineTo(-size*0.22,size*0.30);
+    ctx.closePath(); ctx.fillStyle = 'rgba(0,180,195,0.55)'; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(size*0.60,-size*0.09,size*0.105,0,Math.PI*2);
+    ctx.fillStyle = '#0A1628'; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(size*0.625,-size*0.115,size*0.042,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.75)'; ctx.fill();
+    ctx.restore();
+  }
+
+  // ── DRAW KID — horizontal crawl swimmer with kickboard ──
+  function drawKid(x, y, size, armPhase, kickPhase, excited) {
+    ctx.save();
+    ctx.translate(x, y);
+    // Whole swimmer tilted slightly nose-down like real freestyle
+    ctx.rotate(-0.10);
+    const sk = size;
+
+    // ── KICKBOARD — floats ahead, hands grip it ──
+    // Board is horizontal, slightly above waterline
+    ctx.save();
+    ctx.translate(sk * 2.1, -sk * 0.55);
+    ctx.beginPath();
+    ctx.roundRect(-sk * 0.15, -sk * 0.22, sk * 1.4, sk * 0.42, sk * 0.18);
+    ctx.fillStyle = '#F5C518';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(180,130,0,0.55)';
+    ctx.lineWidth = 1.5; ctx.stroke();
+    // Board shine stripe
+    ctx.beginPath();
+    ctx.roundRect(sk * 0.10, -sk * 0.14, sk * 0.55, sk * 0.10, sk * 0.05);
+    ctx.fillStyle = 'rgba(255,255,255,0.40)'; ctx.fill();
+    ctx.restore();
+
+    // ── BODY — horizontal torso, streamlined ──
+    // Main torso (elongated horizontally)
+    ctx.beginPath();
+    ctx.ellipse(0, 0, sk * 0.90, sk * 0.30, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#1565C0'; // swimsuit
+    ctx.fill();
+
+    // Belly/chest lighter area
+    ctx.beginPath();
+    ctx.ellipse(sk * 0.15, sk * 0.08, sk * 0.55, sk * 0.16, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(100,160,255,0.30)'; ctx.fill();
+
+    // ── ARMS — alternating crawl stroke ──
+    const a1 = Math.sin(armPhase);           // right arm cycle
+    const a2 = Math.sin(armPhase + Math.PI); // left arm (opposite)
+
+    // RIGHT ARM — above water reaching forward when positive, pulling under when negative
+    const rightAbove = a1 > 0;
+    ctx.save();
+    ctx.globalAlpha = rightAbove ? 1.0 : 0.55; // arm underwater = slightly transparent
+    ctx.beginPath();
+    // Shoulder → elbow → hand (reaching to board)
+    const rx1 = sk * 0.55, ry1 = -sk * 0.20;
+    const rx2 = sk * 1.30 + a1 * sk * 0.40, ry2 = -sk * (0.55 + a1 * 0.35);
+    const rx3 = sk * 2.0,  ry3 = -sk * 0.55;
+    ctx.moveTo(rx1, ry1);
+    ctx.quadraticCurveTo(rx2, ry2, rx3, ry3);
+    ctx.strokeStyle = '#FDBCB4';
+    ctx.lineWidth = sk * 0.20; ctx.lineCap = 'round'; ctx.stroke();
+    // Hand on board
+    ctx.beginPath();
+    ctx.arc(rx3, ry3, sk * 0.12, 0, Math.PI * 2);
+    ctx.fillStyle = '#FDBCB4'; ctx.fill();
+    ctx.restore();
+
+    // LEFT ARM — opposite phase
+    const leftAbove = a2 > 0;
+    ctx.save();
+    ctx.globalAlpha = leftAbove ? 1.0 : 0.55;
+    ctx.beginPath();
+    const lx1 = sk * 0.55, ly1 = sk * 0.15;
+    const lx2 = sk * 1.30 + a2 * sk * 0.35, ly2 = -sk * (0.30 + a2 * 0.30);
+    const lx3 = sk * 1.95, ly3 = -sk * 0.48;
+    ctx.moveTo(lx1, ly1);
+    ctx.quadraticCurveTo(lx2, ly2, lx3, ly3);
+    ctx.strokeStyle = '#FDBCB4';
+    ctx.lineWidth = sk * 0.17; ctx.lineCap = 'round'; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(lx3, ly3, sk * 0.10, 0, Math.PI * 2);
+    ctx.fillStyle = '#FDBCB4'; ctx.fill();
+    ctx.restore();
+
+    // ── LEGS — flutter kick, alternating up/down ──
+    const k1 =  Math.sin(kickPhase)           * sk * 0.38; // right leg
+    const k2 =  Math.sin(kickPhase + Math.PI) * sk * 0.36; // left leg
+
+    // Upper legs (thighs) — from hip
+    ctx.lineWidth = sk * 0.22; ctx.strokeStyle = '#1565C0'; ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(-sk * 0.60, -sk * 0.08);
+    ctx.lineTo(-sk * 1.20, -sk * 0.08 + k1 * 0.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-sk * 0.60,  sk * 0.08);
+    ctx.lineTo(-sk * 1.20,  sk * 0.08 + k2 * 0.5);
+    ctx.stroke();
+
+    // Lower legs + feet — more kick amplitude
+    ctx.lineWidth = sk * 0.17; ctx.strokeStyle = '#1060B0';
+    ctx.beginPath();
+    ctx.moveTo(-sk * 1.20, -sk * 0.08 + k1 * 0.5);
+    ctx.lineTo(-sk * 1.75, -sk * 0.05 + k1);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-sk * 1.20,  sk * 0.08 + k2 * 0.5);
+    ctx.lineTo(-sk * 1.75,  sk * 0.10 + k2);
+    ctx.stroke();
+
+    // Feet (pointed like a real swimmer)
+    ctx.lineWidth = sk * 0.13; ctx.strokeStyle = '#FDBCB4';
+    ctx.beginPath();
+    ctx.moveTo(-sk * 1.72, -sk * 0.05 + k1);
+    ctx.lineTo(-sk * 2.05, -sk * 0.02 + k1 * 0.7);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-sk * 1.72,  sk * 0.10 + k2);
+    ctx.lineTo(-sk * 2.05,  sk * 0.13 + k2 * 0.7);
+    ctx.stroke();
+
+    // ── HEAD — turned sideways, partially above water ──
+    // Head rotated slightly to face forward (as if turning to breathe)
+    ctx.save();
+    ctx.translate(sk * 1.0, -sk * 0.42);
+    ctx.rotate(0.25); // slight head tilt looking forward
+
+    // Neck
+    ctx.beginPath();
+    ctx.ellipse(0, sk * 0.22, sk * 0.14, sk * 0.20, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#FDBCB4'; ctx.fill();
+
+    // Head shape — slightly squished (side view)
+    ctx.beginPath();
+    ctx.ellipse(0, 0, sk * 0.34, sk * 0.38, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#FDBCB4'; ctx.fill();
+
+    // Swim cap — covers top of head
+    ctx.beginPath();
+    ctx.ellipse(0, -sk * 0.05, sk * 0.34, sk * 0.28, 0, 0, Math.PI);
+    ctx.fillStyle = '#00C9D4'; ctx.fill();
+    // Cap shine
+    ctx.beginPath();
+    ctx.ellipse(-sk * 0.06, -sk * 0.14, sk * 0.14, sk * 0.08, -0.3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.30)'; ctx.fill();
+
+    // Goggle (side view — single lens visible)
+    ctx.beginPath();
+    ctx.ellipse(sk * 0.18, sk * 0.05, sk * 0.14, sk * 0.10, 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,201,212,0.40)'; ctx.fill();
+    ctx.strokeStyle = '#0A1628'; ctx.lineWidth = 1.8; ctx.stroke();
+    // Goggle shine
+    ctx.beginPath();
+    ctx.arc(sk * 0.22, sk * 0.01, sk * 0.05, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.55)'; ctx.fill();
+    // Goggle strap going around head
+    ctx.beginPath();
+    ctx.moveTo(sk * 0.04, sk * 0.04);
+    ctx.lineTo(-sk * 0.28, sk * 0.04);
+    ctx.strokeStyle = '#0A1628'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Ear (small, side view)
+    ctx.beginPath();
+    ctx.ellipse(-sk * 0.28, sk * 0.10, sk * 0.07, sk * 0.10, 0.1, 0, Math.PI * 2);
+    ctx.fillStyle = '#eea888'; ctx.fill();
+
+    // Mouth — open gulping air (excited) or smiling
+    ctx.beginPath();
+    if (excited) {
+      // Open mouth gasping/smiling wide
+      ctx.ellipse(sk * 0.22, sk * 0.20, sk * 0.10, sk * 0.07, 0.1, 0, Math.PI * 2);
+      ctx.fillStyle = '#b04020'; ctx.fill();
+      ctx.beginPath();
+      ctx.arc(sk * 0.22, sk * 0.20, sk * 0.10, 0, Math.PI, false);
+      ctx.fillStyle = '#FDBCB4'; ctx.fill();
+    } else {
+      // Smiling sideways
+      ctx.moveTo(sk * 0.12, sk * 0.19);
+      ctx.quadraticCurveTo(sk * 0.22, sk * 0.27, sk * 0.32, sk * 0.19);
+      ctx.strokeStyle = '#b05535'; ctx.lineWidth = 1.8; ctx.stroke();
+    }
+
+    ctx.restore(); // end head
+
+    // ── WATER LINE — kid is half submerged ──
+    // Subtle water surface shimmer across body
+    ctx.beginPath();
+    ctx.moveTo(-sk * 2.1, -sk * 0.32);
+    ctx.lineTo( sk * 2.5, -sk * 0.32);
+    ctx.strokeStyle = 'rgba(0,201,212,0.18)';
+    ctx.lineWidth = 2; ctx.stroke();
+
+    // ── KICK SPLASH BUBBLES behind feet ──
+    for (let i = 0; i < 5; i++) {
+      const bx = -sk * (1.6 + i * 0.20) + Math.sin(kickPhase * 2.5 + i * 1.1) * sk * 0.12;
+      const by = Math.sin(kickPhase + i * 0.8) * sk * 0.28;
+      const br = sk * (0.07 - i * 0.01);
+      if (br <= 0) continue;
+      ctx.beginPath();
+      ctx.arc(bx, by, br, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255,255,255,${0.40 - i * 0.07})`;
+      ctx.lineWidth = 0.9; ctx.stroke();
+    }
+
+    // ── WAKE LINES — water parting at board ──
+    ctx.beginPath();
+    ctx.moveTo(sk * 2.3, -sk * 0.22);
+    ctx.quadraticCurveTo(sk * 3.2, -sk * 0.55, sk * 4.0, -sk * 0.35);
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(sk * 2.3, -sk * 0.10);
+    ctx.quadraticCurveTo(sk * 3.0, sk * 0.05, sk * 4.0, -sk * 0.05);
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 1.0; ctx.stroke();
+
+    ctx.restore(); // end whole swimmer
+  }
+
+  function drawPanicBubbles(x, y, tk) {
+    for (let i=0;i<4;i++){
+      const bx=x-i*9-Math.sin(tk*0.25+i)*4;
+      const by=y+Math.cos(tk*0.4+i*1.2)*5-i*3;
+      ctx.beginPath(); ctx.arc(bx,by,1.8-i*0.3,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(255,255,255,${0.32-i*0.06})`; ctx.lineWidth=0.8; ctx.stroke();
+    }
+  }
+
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // waves
+    waves.forEach(w => {
+      ctx.beginPath();
+      const baseY = H * w.y;
+      ctx.moveTo(0, baseY);
+      for (let x=0;x<=W;x+=4){
+        const y = baseY
+          + Math.sin(x*w.freq + t*w.speed*60 + w.phase)*w.amp
+          + Math.sin(x*w.freq*1.6 + t*w.speed*38 + w.phase+1.2)*(w.amp*0.32);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+      ctx.fillStyle = w.color; ctx.fill();
+    });
+
+    // bubbles
+    bubbles.forEach(b=>{
+      b.y -= b.speed;
+      b.x += b.drift + Math.sin(t*0.06+b.phase)*0.00010;
+      if(b.y<-0.05){b.y=1.05;b.x=Math.random();}
+      const bx=b.x*W, by=b.y*H;
+      ctx.beginPath(); ctx.arc(bx,by,b.r,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(0,201,212,${b.alpha})`; ctx.lineWidth=0.8; ctx.stroke();
+    });
+
+    // fish AI
+    const fishScared = (fish.x - shark.x) < 0.28;
+    fish.x  += fishScared ? 0.0026 : 0.0017;
+    fish.y   = 0.50 + Math.sin(t*0.038)*0.055 + (fishScared ? Math.sin(t*0.10)*0.03 : 0);
+    fish.tailPhase = t*(fishScared ? 0.26 : 0.15);
+
+    // shark AI
+    shark.x += 0.0013;
+    shark.y  = fish.y + Math.sin(t*0.022)*0.022;
+    shark.tailPhase = t*0.13;
+    shark.mouth = Math.max(0, Math.sin(t*0.055)*(fishScared ? 1.0 : 0.35));
+
+    // kid AI
+    const kidExcited = (shark.x - kid.x) < 0.32;
+    kid.x  += kidExcited ? 0.0011 : 0.0009;
+    kid.y   = 0.48 + Math.sin(t*0.028)*0.025;
+    kid.armPhase  = t*0.12;
+    kid.kickPhase = t*0.18;
+
+    // wrap
+    if (fish.x > 1.14) { fish.x=0.68; shark.x=0.38; kid.x=0.05; }
+
+    const fx=fish.x*W,  fy=fish.y*H;
+    const sx=shark.x*W, sy=shark.y*H;
+    const kx=kid.x*W,   ky=kid.y*H;
+
+    drawKid  (kx, ky, kid.size,   kid.armPhase,   kid.kickPhase, kidExcited);
+    if (fishScared) drawPanicBubbles(fx, fy, t);
+    drawShark(sx, sy, shark.size, shark.tailPhase, shark.mouth);
+    drawFish (fx, fy, fish.size,  fish.tailPhase,  fishScared);
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+
+  if (document.readyState === 'complete') { draw(); }
+  else { window.addEventListener('load', draw); }
+})();
+document.addEventListener('DOMContentLoaded', () => {
+  const dateEl = document.getElementById('Fecha_Llenado');
+  if (dateEl && !dateEl.value) {
+    dateEl.value = new Date().toISOString().split('T')[0];
+  }
+  loadDraft();
+});
+</script>
+</body>
+</html>
